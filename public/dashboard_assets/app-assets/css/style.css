@@ -1,0 +1,26 @@
+/* custom css */
+
+.create-btn {
+    background-color: #7367f0 !important;
+    border-color: #7367f0 !important;
+}
+
+.btn-info:hover:not(.disabled):not(:disabled) {
+    box-shadow: 0 8px 25px -8px #7367f0;
+}
+
+.navbar-brand__image {
+    max-height: 30px;
+}
+
+.navbar-brand__image--dark {
+    display: none;
+}
+
+.dark-layout .navbar-brand__image--dark {
+    display: initial;
+}
+
+.dark-layout .navbar-brand__image--light {
+    display: none;
+}
