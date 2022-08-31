@@ -2,7 +2,7 @@
 
     {{-- Title --}}
     @section('title')
-        {{ config('app.name') }} | Wallets
+        {{ config('app.name') }} | {{ __('Wallets') }}
     @endsection
 
     {{-- Active Menu --}}
@@ -13,14 +13,14 @@
 
     {{-- Breadcrumb --}}
     @section('breadcrumb')
-         <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+         <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
         <div class="breadcrumb-wrapper">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('dashboard') }}">Home</a>
+                    <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
                 </li>
                 <li class="breadcrumb-item active">
-                    <a href="#">Update Wallet Banner</a>
+                    <a href="#">{{ __('Update Wallet Banner') }}</a>
                 </li>
             </ol>
         </div>
@@ -33,14 +33,14 @@
             <div class="card">
                 <div class="card-header">
                     <div class="col-md-6">
-                        <h4 class="card-title">Update Banner</h4>
+                        <h4 class="card-title">{{ __('Update Banner') }}</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('walletBanner.update', $bannerData->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mt-2">
-                            <label class="form-label">Title <span class="text-danger"> *</span> </label>
+                            <label class="form-label">{{ __('Title') }} <span class="text-danger"> *</span> </label>
                             <input type="text" name="title" class="form-control" value="{{ $bannerData->title }}">
                             @error('title')
                                 <span class="text-danger">{{ $message }}</span>
@@ -49,7 +49,7 @@
                         <div class="form-group mt-2">
                             <div class="row">
                                 <div class="col-10">
-                                    <label class="form-label">Image</label>
+                                    <label class="form-label">{{ __('Image') }}</label>
                                     <input type="file" name="image" class="form-control">
                                     @error('image')
                                         <span class="text-danger">{{ $message }}</span>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Update Banner</button>
+                        <button type="submit" class="btn btn-primary mt-3">{{ __('Update Banner') }}</button>
                     </form>
                 </div>
 

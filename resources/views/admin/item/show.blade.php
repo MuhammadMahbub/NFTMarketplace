@@ -2,7 +2,7 @@
 
 {{-- title --}}
 @section('title')
-{{ config('app.name') }} | Single Item
+{{ config('app.name') }} | {{ __("Single Item") }}
 @endsection
 
 {{-- content --}}
@@ -10,7 +10,7 @@
 <section class="banner-main-section all-pages-input" id="main">
     <div class="row">
         <div class="col-12">
-            <h2 class="dash-ad-title m-0 mb-3">Admin Dashboard | <span class="dash-span-title">Item</span></h2>
+            <h2 class="dash-ad-title m-0 mb-3">{{ __('Admin Dashboard') }} | <span class="dash-span-title">{{ __('Item') }}</span></h2>
         </div>
     </div>
     <div class="row">
@@ -19,7 +19,7 @@
                 <div class="col-lg-12 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"> Show </h4>
+                            <h4 class="card-title"> {{ __('Show') }} </h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -29,7 +29,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th>
-                                                        Name
+                                                        {{ __("Name") }}
                                                     </th>
                                                     <td>
                                                         {{ Str::ucfirst($item->name) ?? "N/A"}}
@@ -37,7 +37,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Status
+                                                        {{ __("Status") }}
                                                     </th>
                                                     <td>
                                                         {{ Str::ucfirst($item->status) ?? ""}}
@@ -45,7 +45,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Slug
+                                                        {{ __('Slug') }}
                                                     </th>
                                                     <td>
                                                         {{ $item->slug ?? "N/A" }}
@@ -53,7 +53,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       Category
+                                                       {{ __('Category') }}
                                                     </th>
                                                     <td>
                                                         {{ Str::ucfirst($item->get_category->name) ?? "N/A" }}
@@ -61,7 +61,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Main Image
+                                                        {{ __('Main Image') }}
                                                     </th>
                                                     <td>
                                                         <img width="200" src="{{ asset('uploads/items') }}/{{ $item->image }}" alt="Main Image">
@@ -69,7 +69,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       Description
+                                                       {{ __('Description') }}
                                                     </th>
                                                     <td>
                                                         {!! $item->description ?? "" !!}
@@ -77,7 +77,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       Price
+                                                       {{ __('Price') }}
                                                     </th>
                                                     <td>
                                                         {{ $item->price ?? "" }} {{ $item->blockchain }}
@@ -85,7 +85,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       Quantity
+                                                       {{ __('Quantity') }}
                                                     </th>
                                                     <td>
                                                         {{ $item->quantity ?? "" }}
@@ -93,7 +93,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       Creator
+                                                       {{ __('Creator') }}
                                                     </th>
                                                     <td>
                                                         {{ Str::ucfirst($item->get_creator->name) ?? "N/A"}}
@@ -101,7 +101,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Creator Photo
+                                                        {{ __('Creator Photo') }}
                                                     </th>
                                                     <td>
                                                         <img width="100" src="{{ asset('uploads/images/users') }}/{{ $item->get_creator->profile_photo_path ?? 'default.jpg'}}" alt="Creator Image">
@@ -109,7 +109,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       Creators Loyalty
+                                                       {{ __('Creators Loyalty') }}
                                                     </th>
                                                     <td>
                                                         {{ $item->creator_loyalty ?? 'n/s'}} %
@@ -117,7 +117,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       Owner
+                                                       {{ __('Owner') }}
                                                     </th>
                                                     <td>
                                                         {{ $item->owner_name ?? 'N/A'}}
@@ -125,7 +125,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Owner Photo
+                                                        {{ __('Owner Photo') }}
                                                     </th>
                                                     <td>
                                                         <img width="100" src="{{ asset('uploads/images/users') }}/{{ $item->get_owner->profile_photo_path ?? 'default.jpg' }}" alt="Creator Image">
@@ -133,7 +133,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       Expire Date
+                                                       {{ __('Expire Date') }}
                                                     </th>
                                                     <td>
                                                         {{ $item->expire_date ?? ''}}
@@ -142,7 +142,7 @@
                                                 <tr>
                                                 <tr>
                                                     <th>
-                                                       Buy Button
+                                                       {{ __('Buy Button') }}
                                                     </th>
                                                     <td>
                                                         {{ $item->buy_button_text ?? ''}}
@@ -150,7 +150,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                       View Button
+                                                       {{ __('View Button') }}
                                                     </th>
                                                     <td>
                                                         {{ $item->view_button_text ?? '' }}
@@ -161,7 +161,7 @@
                                                         $bids = App\Models\PlaceBid::where('item_id',$item->id)->get();
                                                     @endphp
                                                     <th>
-                                                       Bids ({{ $bids->count() }})
+                                                       {{ __('Bids') }} ({{ $bids->count() }})
                                                     </th>
                                                     <td>
                                                         @foreach ($bids as $bid)
@@ -174,7 +174,7 @@
                                                         $likes = App\Models\Like::where('item_id',$item->id)->get();
                                                     @endphp
                                                     <th>
-                                                       Likes ({{ $likes->count() }})
+                                                       {{ __('Likes') }} ({{ $likes->count() }})
                                                     </th>
                                                     <td>
                                                         @foreach ($likes as $like)
@@ -187,7 +187,7 @@
                                                         $problem = App\Models\ItemProblem::where('item_id',$item->id)->get();
                                                     @endphp
                                                     <th>
-                                                       Report ({{ $problem->count() }})
+                                                       {{ __('Report') }} ({{ $problem->count() }})
                                                     </th>
                                                     <td>
                                                         @foreach ($problem as $pro)
@@ -197,14 +197,14 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <a class="btn mt-1 btn-info" href="{{ route('item.index') }}">Return Back</a>
+                                        <a class="btn mt-1 btn-info" href="{{ route('item.index') }}">{{ __('Return Back') }}</a>
                                         @if ($item->creator_id != 1)
                                         <a class="btn mt-1 btn-success" href="{{ route('item_edit', $item->id ?? '') }}">
-                                            <span>Edit</span>
+                                            <span>{{ __("Edit") }}</span>
                                         </a>
                                         @else
                                         <a class="btn mt-1 btn-success" href="{{ route('item.edit', $item->id ?? '') }}">
-                                            <span>Edit</span>
+                                            <span>{{ __('Edit') }}</span>
                                         </a>
                                         @endif
                                     </div>

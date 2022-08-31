@@ -104,14 +104,15 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/notification/seen/', [NotificationController::class, 'notification_seen'])->name('notification_seen');
     Route::get('all/read/notifications/{id}', [NotificationController::class, 'mark_all_notify'])->name('mark_all_notify');
     Route::get('all/view/notifications/{id}', [NotificationController::class, 'view_all_notify'])->name('view_all_notify');
-    Route::delete('delete/notification/{id}', [NotificationController::class, 'notify_destroy'])->name('notify_destroy');
-    Route::post('/multi/delete/notification', [NotificationController::class, 'multi_notify_delete'])->name('multi_notify_delete');
+    Route::post('multi/notifications', [NotificationController::class, 'multi_notify_delete'])->name('multi_notify_delete');
+    Route::delete('multi/notifications/delete/{id}', [NotificationController::class, 'notify_destroy'])->name('notify_destroy');
 
 });
 
 Route::group(['prefix' => 'admin','middleware' => ['auth','check_role']], function(){
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/profile/edit/{slug}', [AdminController::class, 'profile_edit'])->name('profile_edit');
+    Route::get('/profile/edit/password/{id}', [AdminController::class, 'profile_edit_password'])->name('reset.admin.password');
     Route::get('users/list', [AdminController::class, 'userList'])->name('users.index');
     Route::get('users/show/{id}', [AdminController::class, 'userShow'])->name('users.show');
     Route::get('users/create', [AdminController::class, 'userCreate'])->name('users.create');
@@ -203,7 +204,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','check_role']], functi
     Route::get('/wallet/banner', [WalletController::class, 'walletBanner'])->name('wallet.banner');
     Route::post('/wallet-banner/update/{id}', [WalletController::class, 'walletBannerUpdate'])->name('walletBanner.update');
     Route::get('/wallet/services', [WalletController::class, 'walletServices'])->name('wallet.services');
-    Route::get('/wallet.services/create', [WalletController::class, 'walletServicesCreate'])->name('wallet.services.create');
+    Route::get('/wallet/services/create', [WalletController::class, 'walletServicesCreate'])->name('wallet.services.create');
     Route::post('/wallet/services/store', [WalletController::class, 'walletServicesStore'])->name('wallet.services.store');
     Route::get('/wallet/services/edit/{id}', [WalletController::class, 'walletServicesEdit'])->name('wallet.services.edit');
     Route::put('/wallet/services/update/{id}', [WalletController::class, 'walletServicesUpdate'])->name('wallet.services.update');
@@ -215,7 +216,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','check_role']], functi
     Route::get('/bid/items', [PlaceBidController::class, 'bid_items'])->name('bid_items');
     Route::delete('/bid/destroy/{id}', [PlaceBidController::class, 'bid_destroy'])->name('bid_destroy');
     Route::delete('/item-reports-delete/{id}', [ItemReportController::class, 'ItemProblemDestroy'])->name('ItemProblem.destroy');
-    Route::delete('/item/liked/delete/{id}', [LikeController::class, 'like_item_destroy'])->name('like_item_destroy');
+    Route::delete('/item/liked/delete/{id}', [ItemReportController::class, 'like_item_destroy'])->name('like_item_destroy');
     Route::delete('/delete/user/report/message/{id}', [ItemReportController::class, 'user_report_destroy'])->name('user_report_destroy');
     Route::delete('/delete/category/report/message/{id}', [ItemReportController::class, 'report_cat_destroy'])->name('report_cat_destroy');
     Route::get('/show/user/message', [ContactUsController::class, 'userMessage'])->name('userMessage');
@@ -230,8 +231,12 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','check_role']], functi
     Route::delete('/subscriber/delete/{id}', [FrontendController::class, 'destroySubscriber'])->name('subscribers.delete');
     Route::get('/login-page-design', [FrontendController::class, 'loginPageResources'])->name('login.page.design');
     Route::put('/login-page-design-update/{id}', [FrontendController::class, 'loginPageResourcesUpdate'])->name('login.page.design.update');
+    Route::delete('delete/bulk/notification', [NotificationController::class, 'delete_bulk_notification'])->name('delete.bulk.notification');
+    Route::post('filter/by/all/notification', [NotificationController::class, 'filter_by_all_notification'])->name('filter.by.all.notification');
+    Route::post('filter/by/single/notification', [NotificationController::class, 'filter_by_single_notification'])->name('filter.by.single.notification');
 
 });
 Route::get('/forget/password', [FrontendController::class, 'passwordReset'])->name('forget.password');
 Route::resource('contacts', ContactController::class);
 Route::resource('subscribers', SubscriberController::class);
+

@@ -11,11 +11,6 @@ use Illuminate\Http\Request;
 
 class NFTCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('admin.nftcategory.index', [
@@ -23,30 +18,14 @@ class NFTCategoryController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.nftcategory.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:n_f_t_categories',
-            'icon' => 'required',
-            'description' => 'required',
-            'image' => 'required',
-        ]);
+        $request->validate(['name'=>'required|unique:n_f_t_categories','icon'=>'required','description'=>'required','image'=>'required']);
         $unique_id = $request->name.uniqid().date('Y');
         $category = NFTCategory::create([
             'name' => $request->name,
@@ -70,12 +49,6 @@ class NFTCategoryController extends Controller
         return redirect()->route('nft_category.index')->withSuccess('Category Created Successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\NFTCategory  $nFTCategory
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return view('admin.nftcategory.show', [
@@ -83,12 +56,6 @@ class NFTCategoryController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\NFTCategory  $nFTCategory
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         return view('admin.nftcategory.edit', [
@@ -96,20 +63,9 @@ class NFTCategoryController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\NFTCategory  $nFTCategory
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'icon' => 'required',
-            'description' => 'required',
-        ]);
+        $request->validate(['name'=>'required','icon'=>'required','description'=>'required']);
 
         $nFTCategory = NFTCategory::find($id);
         $nFTCategory->update($request->except('_token') + ['updated_at' => Carbon::now()]);
@@ -122,24 +78,12 @@ class NFTCategoryController extends Controller
             $image->move($location, $imageName);
             $nFTCategory->image = $imageName;
         }
-        // if($request->hasFile('creator_photo')){
-        //     $creator_photo = $request->file('creator_photo');
-        //     $creatorPhotoName = uniqid() . "." .$creator_photo->extension();
-        //     $creator_photo->move($location, $creatorPhotoName);
-        //     $nFTCategory->creator_photo = $creatorPhotoName;
-        // }
 
         $nFTCategory->save();
 
         return redirect()->route('nft_category.index')->withSuccess('Updated Successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\NFTCategory  $nFTCategory
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(NFTCategory $nFTCategory, $id)
     {
         $categories = Item::where('category_id', $id)->get();

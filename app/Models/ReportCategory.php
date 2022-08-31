@@ -13,7 +13,12 @@ class ReportCategory extends Model
     public function getUser(){
         return $this->hasOne(User::class, 'id', 'report_by');
     }
+
     public function getReportCat(){
         return $this->hasOne(ItemReport::class, 'id', 'report_id');
+    }
+
+    public function getCategory(){
+        return $this->belongsTo(NFTCategory::class, 'category_id');
     }
 }

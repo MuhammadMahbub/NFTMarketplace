@@ -71,8 +71,8 @@
         <div class="col-xl-12 col-12">
             <div class="card pb-4">
                 <div class="card-header flex-column align-items-start">
-                    <h4 class="card-title mb-75">Total Items</h4>
-                    <span class="card-subtitle text-muted">Statistics of total NFT </span>
+                    <h4 class="card-title mb-75">{{ __('Total Items') }}</h4>
+                    <span class="card-subtitle text-muted">{{ __('Statistics of total NFT') }} </span>
                 </div>
                 <div class="card-body">
                     <div id="items_chart"></div>
@@ -82,8 +82,8 @@
         <div class="col-xl-6 col-12 pb-0">
             <div class="card">
                 <div class="card-header flex-column align-items-start">
-                    <h4 class="card-title mb-75">Total User</h4>
-                    <span class="card-subtitle text-muted">Statistic of total Users</span>
+                    <h4 class="card-title mb-75">{{ __('Total Users') }}</h4>
+                    <span class="card-subtitle text-muted">{{ __('Statistic of total Users') }}</span>
                 </div>
                 <div class="card-body">
                     <div id="userChart"></div>
@@ -94,8 +94,8 @@
         <div class="col-xl-6 col-12 pb-0">
             <div class="card">
                 <div class="card-header flex-column align-items-start">
-                    <h4 class="card-title mb-75">Todays Activity</h4>
-                    <span class="card-subtitle text-muted">Statistics of Activity</span>
+                    <h4 class="card-title mb-75">{{ __('Todays Activity') }}</h4>
+                    <span class="card-subtitle text-muted">{{ __('Statistics of Activity') }}</span>
                 </div>
                 <div class="card-body">
                     <div style="margin-left:80px" id="simplePieChart"></div>
@@ -129,7 +129,7 @@
             }
         },
         xaxis: {
-          categories: ['January', 'Fabruary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          categories: ['{{ __("January") }}', '{{ __("Fabruary") }}', '{{ __("March") }}', '{{ __("April") }}', '{{ __("May") }}', '{{ __("June") }}', '{{ __("July") }}', '{{ __("August") }}', '{{ __("September") }}', '{{ __("October") }}', '{{ __("November") }}', '{{ __("December") }}'],
         }
     };
 
@@ -169,7 +169,7 @@
           enabled: true
         },
         xaxis: {
-          categories: ['January', 'Fabruary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            categories: ['{{ __("January") }}', '{{ __("Fabruary") }}', '{{ __("March") }}', '{{ __("April") }}', '{{ __("May") }}', '{{ __("June") }}', '{{ __("July") }}', '{{ __("August") }}', '{{ __("September") }}', '{{ __("October") }}', '{{ __("November") }}', '{{ __("December") }}'],
         },
         grid: {
           xaxis: {

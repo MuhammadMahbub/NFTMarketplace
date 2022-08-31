@@ -36,66 +36,35 @@ class NotificationController extends Controller
                 'status' => 'seen',
             ]);
         }
-        return back()->with('Your All Notifications Marked as Read');
+        return view('admin.notify.index',compact('all_notifications'))->with('success','{{ __("Your All Notifications Marked as Read") }}');
     }
 
-    public function view_all_notify($id)
+    public function view_all_notify($slug)
     {
-        $all_notifications = Notification::where('notify_to',$id)->get();
+        $user = User::where('slug' , $slug)->first();
+        $all_notifications = Notification::where('notify_to', $user->id)->get();
         return view('admin.notify.index',compact('all_notifications'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Notification $notification)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Notification $notification)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Notification  $notification
-     * @return \Illuminate\Http\Response
-     */
     public function multi_notify_delete(Request $request)
     {
-        // return $request->check;
-        foreach ($request->check as $id) {
+        foreach ($request->selected as $id) {
             Notification::find($id)->delete();
         }
-        return back();
+        return response()->json([
+            'message' => "Notifications Delete Success"
+        ]);
     }
 
     public function notify_destroy(Request $request, $id)
     {
-        return $request->check();
         Notification::find($id)->delete();
         return back()->with('danger','Notification Deleted');
     }
 
     public function notificationView($id){
 
-        // dd('hi');
         $notify = Notification::find($id);
-
-
         if($notify->type == 'Like'){
             $like = Like::find($notify->type_id);
             return redirect()->route('item_details', Item::find($like->item_id)->slug);
@@ -136,5 +105,26 @@ class NotificationController extends Controller
             return redirect()->route('item_details', Item::find($itemproblem->item_id)->slug);
         }
 
+    }
+
+
+    // bulk delete notification
+    public function filter_by_all_notification(Request $request){
+        return 'i am here';
+    }
+
+    public function filter_by_single_notification(){
+        return 'i am here';
+    }
+
+    public function delete_bulk_notification(Request $request){
+       $notification_id = $request->notification_id;
+       $notification_id_array = explode(',', $notification_id);
+
+        foreach ($notification_id_array as $id) {
+            Notification::find($id)->delete();
+        }
+
+        return back()->with('danger', 'Notification delete successfully!');
     }
 }

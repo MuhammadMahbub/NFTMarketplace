@@ -170,6 +170,7 @@
                             <div
                                 class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border">
                                 <input
+                                value="{{ old('email') }}"
                                 type="email"
                                 name="email"
                                 class="email focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset"
@@ -177,12 +178,13 @@
                                 />
                             </div>
                             <div class="mb-2 flex items-center justify-between">
-                                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Password</span>
+                                <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Password test</span>
                             </div>
 
                             <div
                                 class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border">
                                 <input
+                                value="{{ old('password') }}"
                                 type="password"
                                 name="password"
                                 class="focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset"

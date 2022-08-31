@@ -15,15 +15,7 @@ class HomeController extends Controller
     }
 
     public function bannerUpdate(Request $request, $id){
-        $request->validate([
-            'title'     => 'required',
-            'sub_title' => 'required',
-            'btn1_text' => 'required',
-            'btn1_url'  => 'required',
-            'btn2_text' => 'required',
-            'btn2_url'  => 'required',
-            'image'     => 'image'
-        ]);
+        $request->validate(['title'=>'required','sub_title'=>'required','btn1_text'=>'required','btn1_url'=>'required','btn2_text'=>'required','btn2_url'=>'required','image'=>'image']);
         $banner = Banner::where('id', $id)->first();
         $banner->update($request->except('_token') + ['created_at' => Carbon::now()]);
 
@@ -47,7 +39,7 @@ class HomeController extends Controller
     }
 
     public function nftModuleStore(Request $request){
-        $request->validate(['icon' => 'required', 'title' => 'required', 'description' => 'required']);
+        $request->validate(['icon'=>'required','title'=>'required','description'=>'required']);
         NftModule::create($request->except('_token') + ['created_at' => Carbon::now()]);
         return redirect()->route('nftModule.index')->withSuccess('Data Store Success !');
     }
@@ -58,7 +50,7 @@ class HomeController extends Controller
     }
 
     public function nftModuleUpdate(Request $request, $id){
-        $request->validate(['icon' => 'required', 'title' => 'required', 'description' => 'required']);
+        $request->validate(['icon'=>'required','title'=>'required','description'=>'required']);
 
         $nftModule = NftModule::where('id', $id)->first();
         $nftModule->update($request->except('_token') + ['updated_at' => carbon::now()]);
@@ -76,11 +68,7 @@ class HomeController extends Controller
     }
 
     public function homeTitleUpdate(Request $request, $id){
-        $request->validate([
-            'collection_title' => 'required',
-            'category_title'   => 'required',
-            'module_title'     => 'required',
-        ]);
+        $request->validate(['collection_title'=>'required','category_title'=>'required','module_title'=>'required']);
         $homeTitle = HomeTitle::first();
         $homeTitle->update($request->except('_token') + ['updated_at' => Carbon::now()]);
         return back()->withSuccess('Title Updated Success !');

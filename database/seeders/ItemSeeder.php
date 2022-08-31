@@ -30,6 +30,7 @@ class ItemSeeder extends Seeder
             'buy_button_text'=> 'Buy now',
             'view_button_text'=> 'View Details',
             'status' => 'hide',
+            'created_at' => Carbon::createFromFormat('Y-m-d', '2022-07-21')->toDateTimeString(),
         ]);
         Item::create([
             'category_id'=> 2,
@@ -46,6 +47,7 @@ class ItemSeeder extends Seeder
             'buy_button_text'=> 'Buy now',
             'view_button_text'=> 'View Details',
             'status' => 'show',
+            'created_at' => Carbon::createFromFormat('Y-m-d', '2022-05-21')->toDateTimeString(),
         ]);
         Item::create([
             'category_id'=> 3,
@@ -62,6 +64,7 @@ class ItemSeeder extends Seeder
             'buy_button_text'=> 'Buy now',
             'view_button_text'=> 'View Details',
             'status' => 'hide',
+            'created_at' => Carbon::createFromFormat('Y-m-d', '2022-03-21')->toDateTimeString(),
         ]);
         Item::create([
             'category_id'=> 4,
@@ -78,6 +81,7 @@ class ItemSeeder extends Seeder
             'buy_button_text'=> 'Buy now',
             'view_button_text'=> 'View Details',
             'status' => 'show',
+            'created_at' => Carbon::createFromFormat('Y-m-d', '2022-06-21')->toDateTimeString(),
         ]);
         Item::create([
             'category_id'=> 1,
@@ -94,6 +98,7 @@ class ItemSeeder extends Seeder
             'buy_button_text'=> 'Buy now',
             'view_button_text'=> 'View Details',
             'status' => 'hide',
+            'created_at' => Carbon::createFromFormat('Y-m-d', '2022-06-21')->toDateTimeString(),
         ]);
         Item::create([
             'category_id'=> 2,
@@ -110,6 +115,7 @@ class ItemSeeder extends Seeder
             'buy_button_text'=> 'Buy now',
             'view_button_text'=> 'View Details',
             'status' => 'show',
+            'created_at' => Carbon::createFromFormat('Y-m-d', '2022-04-21')->toDateTimeString(),
         ]);
         Item::create([
             'category_id'=> 3,
@@ -126,6 +132,7 @@ class ItemSeeder extends Seeder
             'buy_button_text'=> 'Buy now',
             'view_button_text'=> 'View Details',
             'status' => 'hide',
+            'created_at' => Carbon::createFromFormat('Y-m-d', '2022-02-21')->toDateTimeString(),
         ]);
         Item::create([
             'category_id'=> 4,
@@ -142,6 +149,7 @@ class ItemSeeder extends Seeder
             'buy_button_text'=> 'Buy now',
             'view_button_text'=> 'View Details',
             'status' => 'show',
+            'created_at' => Carbon::createFromFormat('Y-m-d', '2022-04-21')->toDateTimeString(),
         ]);
     }
 }

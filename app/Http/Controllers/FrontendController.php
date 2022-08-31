@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Session;
 use App\Models\{Blog,Item,Team,User,Guest,Banner,TeamBanner,TermService,PlaceBid,HomeTitle,NftModule,NFTCategory,AboutCount,Newsletter,AboutHeader,ContactTitles,PartnerReview,PartnerSignUp,PartnerTitles,ContactAddress, FAQ, PartnerService,GuestUserMessage, HelpCenter, LoginSignUpPage, PartnerBrandImage,PartnerTopSection, Subscribe, WalletBanner,WalletServices};
-
+use Illuminate\Support\Facades\App;
 
 class FrontendController extends Controller
 {
+    
     public function index(){
         return view('frontend_pages.home', [
             'homeTitle'     => HomeTitle::first(),
@@ -365,14 +366,7 @@ class FrontendController extends Controller
     }
 
     public function update_user_profile(Request $request, $user_id){
-        $request->validate([
-            'name'           => 'required',
-            'username'       => 'required',
-            'bio'            => 'required',
-            'email'          => 'required',
-            'wallet_address' => 'required',
-        ]);
-
+        $request->validate(['name'=>'required','username'=>'required','bio'=>'required','email'=>'required','wallet_address'=>'required']);
         $user = User::find($user_id);
         $user->update([
             'name'           => $request->name,
@@ -446,11 +440,7 @@ class FrontendController extends Controller
                 ]);
             return response()->json(['success' => "Thanks For Message us !"]);
         }else{
-            $request->validate([
-                'name'    => 'required',
-                'email'   => 'required',
-                'message' => 'required',
-            ]);
+            $request->validate(['name'=>'required','email'=>'required','message'=>'required']);
             GuestUserMessage::create($request->except('_token') + ['created_at' => Carbon::now()]);
             return response()->json(['success' => "Thanks For Message us !"]);
         }
@@ -511,11 +501,7 @@ class FrontendController extends Controller
     }
 
     public function updatePlatformTitles(Request $request, $id){
-        $request->validate([
-            'title'           => 'required',
-            'operation_title' => 'required',
-            'history_title'   => 'required'
-        ]);
+        $request->validate(['title'=>'required','operation_title'=>'required','history_title'=>'required']);
         $updatableData = PlatformTitles::find($id);
         $updatableData->update($request->except('_token') + ['updated_at' => Carbon::now()]);
         if($request->hasFile('image')){
@@ -576,5 +562,4 @@ class FrontendController extends Controller
     public function passwordReset(){
         return view('admin.loginPage.forgetPassword');
     }
-
 }

@@ -22,3 +22,4 @@ class ItemProblem extends Model
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 }
+

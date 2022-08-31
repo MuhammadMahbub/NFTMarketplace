@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-    {{ config('app.name') }} | Subscribers
+    {{ config('app.name') }} | {{ __('Subscribers') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -13,14 +13,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
             <li class="breadcrumb-item active">
-                Users
+                {{ __('Users') }}
             </li>
         </ol>
     </div>
@@ -32,23 +32,26 @@
     <div class="col-12 m-auto">
         <div class="card">
             <div class="card-header d-flex">
-                <h4 class="card-title">Subscribers List</h4>
+                <h4 class="card-title">{{ __('Subscribers List') }}</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>Email</th>
-                                <th>Actions</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __('Email') }}</th>
+                                <th>{{ __('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($all_subscribers as $subs)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $subs->email ?? ''}}</td>
+                                @php
+                                    $user = App\Models\User::where('email',$subs->email)->first();
+                                @endphp
+                                <td><a href="{{ route('user', $user->id) }}">{{ $subs->email ?? ''}}</a></td>
 
                                 <td>
                                     <div class="dropdown">
@@ -59,7 +62,7 @@
 
                                             <a class="dropdown-item" data-toggle="modal" data-target="#subsDelete{{ $subs->id }}" title="delete">
                                                 <i data-feather="trash" class="mr-50"></i>
-                                                <span>Delete</span>
+                                                <span>{{ __('Delete') }}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -74,14 +77,14 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Are You Sure Delete The User?
+                                           {{ __('Are You Sure Delete The User?') }}
                                         </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
                                         <form action="{{ route('subs_destroy', $subs->id) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
                                         </form>
                                     </div>
                                     </div>

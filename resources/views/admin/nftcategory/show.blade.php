@@ -2,7 +2,7 @@
 
 {{-- title --}}
 @section('title')
-{{ config('app.name') }} | Single Category
+{{ config('app.name') }} | {{ __('Single Category') }}
 @endsection
 
 {{-- content --}}
@@ -10,7 +10,7 @@
 <section class="banner-main-section all-pages-input" id="main">
     <div class="row">
         <div class="col-12">
-            <h2 class="dash-ad-title m-0 mb-3">Admin Dashboard | <span class="dash-span-title">Category</span></h2>
+            <h2 class="dash-ad-title m-0 mb-3">{{ __('Admin Dashboard') }} | <span class="dash-span-title">{{ __('Category') }}</span></h2>
         </div>
     </div>
     <div class="row">
@@ -19,7 +19,7 @@
                 <div class="col-lg-12 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"> Show </h4>
+                            <h4 class="card-title"> {{ __('Show') }} </h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -29,7 +29,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th>
-                                                        Name
+                                                        {{ __('Name') }}
                                                     </th>
                                                     <td>
                                                         {{ $nft_category->name }}
@@ -37,7 +37,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Unique Id
+                                                        {{ __('Unique Id') }}
                                                     </th>
                                                     <td>
                                                         {{ $nft_category->unique_id }}
@@ -46,7 +46,7 @@
                                                 <tr>
                                                 <tr>
                                                     <th>
-                                                        Icon
+                                                        {{ __("Icon") }}
                                                     </th>
                                                     <td>
                                                         {!! $nft_category->icon !!}
@@ -54,7 +54,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Description
+                                                        {{ __('Description') }}
                                                     </th>
                                                     <td>
                                                         {!! $nft_category->description !!}
@@ -62,7 +62,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                         Image
+                                                         {{ __('Image') }}
                                                     </th>
                                                     <td>
                                                         <img width="500" src="{{ asset('uploads/nftcategory') }}/{{ $nft_category->image }}" alt="Main Image">
@@ -72,7 +72,7 @@
                                                     @php
                                                         $report = App\Models\ReportCategory::where('category_id',$nft_category->id)->get();
                                                     @endphp
-                                                    <th>Report ({{ $report->count() }})</th>
+                                                    <th>{{ __("Report") }} ({{ $report->count() }})</th>
                                                     <td>
                                                         @foreach ($report as $rep)
                                                             {{ $rep->getUser->name }}{{ !$loop->last ? ',':'' }}
@@ -92,8 +92,8 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <a class="btn mt-1 btn-success" href="{{ route('nft_category.index') }}">Return Back</a>
-                                        <a class="btn edit-btn mt-1 btn-primary" href="{{ route('nft_category.edit', $nft_category->id) }}">Edit</a>
+                                        <a class="btn mt-1 btn-success" href="{{ route('nft_category.index') }}">{{ __('Return Back') }}</a>
+                                        <a class="btn edit-btn mt-1 btn-primary" href="{{ route('nft_category.edit', $nft_category->id) }}">{{ __("Edit") }}</a>
                                     </div>
                                 </div>
                             </div>

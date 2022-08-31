@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-    {{ config('app.name') }} | Partner
+    {{ config('app.name') }} | {{ __('Partner') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -13,14 +13,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
             <li class="breadcrumb-item active">
-                Partner Sign Up
+                {{ __('Partner Sign Up') }}
             </li>
         </ol>
     </div>
@@ -33,7 +33,7 @@
             <div class="col-md-12 m-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Update SignUp Info</h4>
+                        <h4 class="card-title"> {{ __("Update SignUp Info") }}</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('partner.signUp.update', $partnerSignUp->id) }}" method="POST" class="form form-vertical">
@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="title">Title<span class="text-danger"> *</span></label>
+                                        <label for="title">{{ __('Title') }}<span class="text-danger"> *</span></label>
                                         <input type="text" name="title" value="{{ $partnerSignUp->title }}" id="title" class="form-control"/>
                                         @error('title')
                                             <small class="text-danger">{{ $message }}</small>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="meta_title">Meta Title <span class="text-danger"> *</span></label>
+                                        <label for="meta_title">{{ __('Meta Title') }} <span class="text-danger"> *</span></label>
                                         <textarea name="meta_title" id="meta_title" cols="30" rows="5" class="form-control">{{ $partnerSignUp->meta_title }}</textarea>
                                         @error('meta_title')
                                             <small class="text-danger">{{ $message }}</small>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="btn_text">Button Text<span class="text-danger"> *</span></label>
+                                        <label for="btn_text">{{ __('Button Text') }}<span class="text-danger"> *</span></label>
                                         <input type="text" name="btn_text" value="{{ $partnerSignUp->btn_text }}" id="btn_text" class="form-control"/>
                                         @error('btn_text')
                                             <small class="text-danger">{{ $message }}</small>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="btn_url">Button URL<span class="text-danger"> *</span></label>
+                                        <label for="btn_url">{{ __('Button URL') }}<span class="text-danger"> *</span></label>
                                         <input type="text" name="btn_url" value="{{ $partnerSignUp->btn_url }}" id="btn_url" class="form-control"/>
                                         @error('btn_url')
                                             <small class="text-danger">{{ $message }}</small>
@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary mr-1">Update Partner SignUp Info</button>
+                                    <button type="submit" class="btn btn-primary mr-1">{{ __('Update Partner SignUp Info') }}</button>
                                 </div>
                             </div>
                         </form>

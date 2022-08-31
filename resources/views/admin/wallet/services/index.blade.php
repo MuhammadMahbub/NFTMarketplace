@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Wallet Services
+     {{ __('Wallet Service') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -14,14 +14,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
-            <li class="breadcrumb-item">Services</li>
-            <li class="breadcrumb-item active">List</li>
+            <li class="breadcrumb-item">{{ __('Services') }}</li>
+            <li class="breadcrumb-item active">{{ __('List') }}</li>
         </ol>
     </div>
 @endsection
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="card-header">
-                        <h4 class="card-title">List</h4>
+                        <h4 class="card-title">{{ __('List') }}</h4>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -46,11 +46,11 @@
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>SVG</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Action</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __('SVG') }}</th>
+                                <th>{{ __('Title') }}</th>
+                                <th>{{ __('Description') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,11 +75,11 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{ route('wallet.services.edit', $data->id) }}">
                                                 <i data-feather='edit' class="mr-50"></i>
-                                                <span>Edit</span>
+                                                <span>{{ __('Edit') }}</span>
                                             </a>
                                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter{{ $data->id }}" title="Delete">
                                                 <i data-feather="trash" class="mr-50"></i>
-                                                <span>Delete</span>
+                                                <span>{{ __('Delete') }}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -92,20 +92,20 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Service</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ __('Service') }}</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Are You Sure To Delete This Service?
+                                                {{ __('Are You Sure To Delete This Service?') }}
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Close') }}</button>
                                                 <form action="{{ route('wallet.services.destroy', $data->id) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                    <button type="submit" class="btn btn-primary">{{ __('Delete') }}</button>
                                                 </form>
                                             </div>
                                         </div>

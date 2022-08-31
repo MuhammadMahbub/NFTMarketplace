@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Nft Module
+     {{ __('Nft Modules') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -14,13 +14,13 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __("Home") }}</a>
             </li>
-            <li class="breadcrumb-item active">NFT Modules</li>
+            <li class="breadcrumb-item active">{{ __('NFT Modules') }}</li>
         </ol>
     </div>
 @endsection
@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-lg-10">
                             <div class="form-group mt-2">
-                                <label class="form-label">Icon <span class="text-danger"> *</span></label>
+                                <label class="form-label">{{ __('Icon') }} <span class="text-danger"> *</span></label>
                                 <input type="text" name="icon" class="form-control" value="{{ $nftModule->icon }}">
                                 @error('icon')
                                     <span class="text-danger">{{ $message }}</span>
@@ -56,20 +56,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Title <span class="text-danger"> *</span></label>
+                        <label>{{ __('Title') }} <span class="text-danger"> *</span></label>
                         <input type="text" name="title" class="form-control" value="{{ $nftModule->title }}">
                         @error('title')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Description <span class="text-danger"> *</span></label>
+                        <label>{{ __('Description') }} <span class="text-danger"> *</span></label>
                         <textarea name="description" class="form-control"  cols="30" rows="5">{{ $nftModule->description }}</textarea>
                         @error('description')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Update Module Data</button>
+                    <button type="submit" class="btn btn-primary mt-3">{{ __('Update Module Data') }}</button>
                 </form>
             </div>
 

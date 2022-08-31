@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Category
+     {{ __('Category') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -22,18 +22,18 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-    <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+    <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
 
             <li class="breadcrumb-item">
-                <a href="{{ route('category.index') }}">Category</a>
+                <a href="{{ route('category.index') }}">{{ __('Category') }}</a>
             </li>
             <li class="breadcrumb-item active">
-                update category name
+                {{ __('Update category name') }}
             </li>
         </ol>
     </div>
@@ -45,7 +45,7 @@
       <div class="col-lg-12">
         <div class="card shadow">
           <div class="card-header">
-            <h4 class="card-title">Update Category</h4>
+            <h4 class="card-title">{{ __('Update Category') }}</h4>
           </div>
           <div class="card-body">
             <form method="POST" action="{{ route('category.update', $category->id) }}"
@@ -53,11 +53,11 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="name">Name <span class="text-danger">*</span></label>
+                    <label for="name">{{ __('Name') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="name" name="name"
                         value="{{ $category->name }}">
                 </div>
-                <button type="submit" class="btn btn-primary mt-4">Update</button>
+                <button type="submit" class="btn btn-primary mt-4">{{ __('Update') }}</button>
             </form>
         </div>
     </div>

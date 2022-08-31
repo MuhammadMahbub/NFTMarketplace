@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-    {{ config('app.name') }} | Contacts
+    {{ config('app.name') }} | {{ __('Contacts') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -13,11 +13,11 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
             <li class="breadcrumb-item active">
                 Contacts
@@ -32,7 +32,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Contact List</h4>
+                <h4 class="card-title">{{ __('Contact List') }}</h4>
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
@@ -45,12 +45,12 @@
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Message</th>
-                                <th>Actions</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('Email') }}</th>
+                                <th>{{ __('Phone') }}</th>
+                                <th>{{ __('Message') }}</th>
+                                <th>{{ __('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,10 +70,10 @@
                                             <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST">
                                                 {{-- Initiate Delete method --}}
                                                 {{ method_field('DELETE') }}
-                                                @csrf 
+                                                @csrf
                                                 <a class="dropdown-item" href="{{ route('contacts.destroy', $contact->id) }}" onclick="event.preventDefault(); this.closest('form').submit();">
                                                     <i data-feather="trash" class="mr-50"></i>
-                                                    <span>Delete</span>
+                                                    <span>{{ __('Delete') }}</span>
                                                 </a>
                                             </form>
                                         </div>
@@ -85,7 +85,7 @@
                     </table>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

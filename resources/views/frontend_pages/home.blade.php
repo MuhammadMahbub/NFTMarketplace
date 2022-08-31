@@ -35,6 +35,43 @@
         html:not(.dark) .dropdown .dropdown-item.active{
             color: rgb(19 23 64/var(--tw-text-opacity));
         }
+        .lds-facebook {
+            display: inline-block;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            }
+            .lds-facebook div {
+            margin-top: 7px !important;
+            display: inline-block;
+            position: absolute;
+            left: 3px;
+            width: 6px;
+            background: #fff;
+            animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+            }
+            .lds-facebook div:nth-child(1) {
+            left: 4px;
+            animation-delay: -0.24s;
+            }
+            .lds-facebook div:nth-child(2) {
+            left: 16px;
+            animation-delay: -0.12s;
+            }
+            .lds-facebook div:nth-child(3) {
+            left: 28px;
+            animation-delay: 0;
+            }
+            @keyframes lds-facebook {
+            0% {
+                top: 4px;
+                height: 24px;
+            }
+            50%, 100% {
+                top: 10px;
+                height: 12px;
+            }
+        }
     </style>
 @endpush
 
@@ -52,9 +89,12 @@
 
       <div class="container h-full">
         <div class="grid h-full items-center gap-4 md:grid-cols-12">
-          <div class="col-span-6 flex h-full flex-col items-center justify-center py-10 md:items-start md:py-20 xl:col-span-4" >
+          <div
+            class="col-span-6 flex h-full flex-col items-center justify-center py-10 md:items-start md:py-20 xl:col-span-4"
+          >
             <h1
-              class="text-jacarta-700 font-display mb-6 text-center text-5xl dark:text-white md:text-left lg:text-6xl xl:text-7xl" >
+              class="text-jacarta-700 font-display mb-6 text-center text-5xl dark:text-white md:text-left lg:text-6xl xl:text-7xl"
+            >
               {{ $banner->title }}
             </h1>
             <p class="dark:text-jacarta-200 mb-8 text-center text-lg md:text-left">
@@ -62,20 +102,26 @@
             </p>
             <div class="flex space-x-4">
               @auth
-              <a href="{{ route($banner->btn1_url) }}"
-                class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-8 text-center font-semibold text-white transition-all" >
+              <a
+                href="{{ route($banner->btn1_url) }}"
+                class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+              >
                 {{ $banner->btn1_text }}
               </a>
               @else
-              <a style="cursor:pointer"
+              <a
+                style="cursor:pointer"
                 data-bs-toggle="modal"
                 data-bs-target="#loginFromBannerModal"
-                class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-8 text-center font-semibold text-white transition-all" >
+                class="bg-accent shadow-accent-volume hover:bg-accent-dark w-36 rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+              >
                 {{ $banner->btn1_text }}
               </a>
               @endauth
-              <a href="{{ route($banner->btn2_url) }}"
-                class="text-accent shadow-white-volume hover:bg-accent-dark hover:shadow-accent-volume w-36 rounded-full bg-white py-3 px-8 text-center font-semibold transition-all hover:text-white" >
+              <a
+                href="{{ route($banner->btn2_url) }}"
+                class="text-accent shadow-white-volume hover:bg-accent-dark hover:shadow-accent-volume w-36 rounded-full bg-white py-3 px-8 text-center font-semibold transition-all hover:text-white"
+              >
                 {{ $banner->btn2_text }}
               </a>
             </div>
@@ -87,16 +133,19 @@
                   <div class="modal-dialog max-w-2xl">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title">Login</h5>
+                              <h5 class="modal-title">{{ __('Login') }}</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                   <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 0 24 24"
                                   width="24"
                                   height="24"
-                                  class="fill-jacarta-700 h-6 w-6 dark:fill-white" >
+                                  class="fill-jacarta-700 h-6 w-6 dark:fill-white"
+                                  >
                                   <path fill="none" d="M0 0h24v24H0z" />
-                                  <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                                  <path
+                                      d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                                  />
                                   </svg>
                               </button>
                           </div>
@@ -104,7 +153,7 @@
                           <div class="modal-body p-6">
                               <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                                   <div class="mb-2 flex items-center justify-between">
-                                      <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Email</span>
+                                      <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{ __('Email') }}</span>
                                   </div>
 
                                   <div
@@ -117,7 +166,7 @@
                                       />
                                   </div>
                                   <div class="mb-2 flex items-center justify-between">
-                                      <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Password</span>
+                                      <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{ __('Password') }}</span>
                                   </div>
 
                                   <div
@@ -137,6 +186,7 @@
                                           class="loginFromBannerModal bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
                                           >
                                           {{ __('Login') }}
+                                          <div style="display:none;" class="lds-facebook"><div></div><div></div><div></div></div>
                                       </a>
                                   </div>
 
@@ -146,7 +196,7 @@
                           <div class="modal-footer">
                               <div class="flex items-center justify-end mt-4">
                                   <a href="{{ route('register') }}">
-                                    Not Registered Yet ?  <b>{{ __('Register Here') }}</b>
+                                    {{ __('Not Registered Yet?') }}  <b>{{ __('Register Here') }}</b>
                               </a>
                           </div>
                           </div>
@@ -200,7 +250,7 @@
               background-image: url(https://cdn.jsdelivr.net/npm/emoji-datasource-apple@7.0.2/img/apple/64/1f525.png);
             "
           ></span>
-          Hot Bids
+          {{ __('Hot Bids') }}
         </h2>
 
         <div class="relative">
@@ -264,7 +314,7 @@
                       </span>
                     </div>
                     <div class="mt-2 text-sm">
-                        <span class="dark:text-jacarta-300 mr-2">Current Bid:</span>
+                        <span class="dark:text-jacarta-300 mr-2">{{ __('Current Bid:') }}</span>
                         <span class="dark:text-jacarta-100 text-jacarta-700"> {{ $latest_bid->bid_amount ?? "0" }} {{ $latest->blockchain }}</span>
                       </div>
 
@@ -326,7 +376,7 @@
                         <div class="modal-dialog max-w-2xl">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="placeBidLabel">Place a bid</h5>
+                                    <h5 class="modal-title" id="placeBidLabel">{{ __('Place a bid') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                         <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -346,7 +396,7 @@
                                 <!-- Body -->
                                     <div class="modal-body p-6">
                                         <div>
-                                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Current Bid: </span>{{ $latest_bid->bid_amount ?? '' }}
+                                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{ __('Current Bid:') }} </span>{{ $latest_bid->bid_amount ?? '' }}
                                         </div>
                                         <div
                                             class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border"
@@ -385,19 +435,27 @@
                                         <!-- Terms -->
                                         @auth
                                         @else
-                                        <h3 style="color: red">Please
-                                            <a style="color: blue; cursor:pointer"
+                                        <h3 style="color: red">{{ __('Please') }}
+                                            <a
+
+                                                style="color: blue; cursor:pointer"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#loginModal{{ $latest->id }}" > Login
-                                            </a> First
-                                        </h3>
+                                                data-bs-target="#loginModal{{ $latest->id }}"
+                                             >
+                                             {{ __('Login') }}
+                                            </a>
+                                             {{ __('First') }}
+                                            </h3>
                                         @endauth
                                         <div class="mt-4 flex items-center space-x-2">
-                                            <input type="checkbox"
+                                            <input
+                                            type="checkbox"
                                             name="check"
-                                            class="terms checked:bg-accent dark:bg-jacarta-600 text-accent border-jacarta-200 focus:ring-accent/20 dark:border-jacarta-500 h-5 w-5 self-start rounded focus:ring-offset-0" />
-                                            <label for="terms" class="dark:text-jacarta-200 text-sm">By checking this box, I agree to Xhibiter's <a href="{{ route('terms_of_services') }}" class="text-accent">Terms of Service</a>
-                                            </label>
+                                            class="terms checked:bg-accent dark:bg-jacarta-600 text-accent border-jacarta-200 focus:ring-accent/20 dark:border-jacarta-500 h-5 w-5 self-start rounded focus:ring-offset-0"
+                                            />
+                                            <label for="terms" class="dark:text-jacarta-200 text-sm"
+                                            >{{ __("By checking this box, I agree to Xhibiter's") }} <a href="{{ route('terms_of_services') }}" class="text-accent">{{ __('Terms of Service') }}</a></label
+                                            >
                                         </div>
                                         <div class="checkBoxError"></div>
                                     </div>
@@ -406,18 +464,23 @@
                                 <div class="modal-footer">
                                     @auth
                                     <div class="flex items-center justify-center space-x-4">
-                                        <a data-id="{{ $latest->id }}"
+                                        <a
+                                            data-id="{{ $latest->id }}"
                                             style="cursor:pointer"
-                                            class="placeBidBtn bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" >
+                                            class="placeBidBtn bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+                                            >
                                             {{ __('Place Bid') }}
                                         </a>
                                     </div>
                                     @else
                                     <div class="flex items-center justify-center space-x-4">
-                                        <a style="cursor:pointer"
+                                        <a
+
+                                            style="cursor:pointer"
                                             data-bs-toggle="modal"
                                             data-bs-target="#loginModal{{ $latest->id }}"
-                                            class=" bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" >
+                                            class=" bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+                                            >
                                             {{ __('Place Bid') }}
                                         </a>
                                     </div>
@@ -429,21 +492,26 @@
                 </div>
                 @endpush
 
+                {{-- login from place bid modal --}}
                 @push('modals')
                 <div class="modal loginModal fade" id="loginModal{{ $latest->id }}" tabindex="-1" aria-labelledby="placeBidLabel" aria-hidden="true">
                     <form>
                         <div class="modal-dialog max-w-2xl">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Login</h5>
+                                    <h5 class="modal-title">{{ __('Login') }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                        <svg
+                                        xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
                                         width="24"
                                         height="24"
-                                        class="fill-jacarta-700 h-6 w-6 dark:fill-white" >
+                                        class="fill-jacarta-700 h-6 w-6 dark:fill-white"
+                                        >
                                         <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z" />
+                                        <path
+                                            d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                                        />
                                         </svg>
                                     </button>
                                 </div>
@@ -451,26 +519,42 @@
                                 <div class="modal-body p-6">
                                     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                                         <div class="mb-2 flex items-center justify-between">
-                                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Email</span>
+                                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{ __('Email') }}</span>
                                         </div>
 
-                                        <div class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border">
-                                            <input type="email" name="email" class="email{{ $latest->id }} focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset" placeholder="Email" />
+                                        <div
+                                            class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border">
+                                            <input
+                                            type="email"
+                                            name="email"
+                                            class="email{{ $latest->id }} focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset"
+                                            placeholder="Email"
+                                            />
                                         </div>
                                         <div class="mb-2 flex items-center justify-between">
-                                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">Password</span>
+                                            <span class="font-display text-jacarta-700 text-sm font-semibold dark:text-white">{{ __('Password') }}</span>
                                         </div>
 
-                                        <div class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border">
-                                            <input type="password" name="password" data-id="{{ $latest->id }}" class="login__Input password{{ $latest->id }} focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset" placeholder="Password" />
+                                        <div
+                                            class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border">
+                                            <input
+                                            type="password"
+                                            name="password"
+                                            data-id="{{ $latest->id }}"
+                                            class="login__Input password{{ $latest->id }} focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset"
+                                            placeholder="Password"
+                                            />
                                         </div>
-                                        <span id="errorPass"></span>
+                                        <span id="errorPassBid"></span>
                                         <div class="flex items-center justify-center space-x-4">
-                                            <a data_id="{{ $latest->id }}"
+                                            <a
+                                                data_id="{{ $latest->id }}"
                                                 id='loginFromBid'
                                                 style="cursor:pointer"
-                                                class="placeBidBtn loginFromBid loginFrom__Bid{{ $latest->id }} bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all" >
+                                                class="placeBidBtn loginFromBid loginFrom__Bid{{ $latest->id }} bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+                                                >
                                                 {{ __('Login') }}
+                                                <div style="display:none;" class="lds-facebook"><div></div><div></div><div></div></div>
                                             </a>
                                         </div>
 
@@ -480,16 +564,19 @@
                                 <div class="modal-footer">
                                     <div class="flex items-center justify-end mt-4">
                                         <a href="{{ route('register') }}">
-                                          Not Registered Yet ?  <b>{{ __('Register Here') }}</b>
-                                        </a>
-                                    </div>
+                                          {{ __('Not Registered Yet?') }}  <b>{{ __('Register Here') }}</b>
+                                    </a>
+                                </div>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 @endpush
+
               @endforeach
+
+
             </div>
           </div>
 
@@ -538,26 +625,36 @@
             {{ $homeTitle->collection_title }}
           </h2>
           <div class="dropdown inline cursor-pointer">
-            <button class="dropdown-toggle text-accent inline-flex items-center dropdown-toggle__text"
+            <button
+              class="dropdown-toggle text-accent inline-flex items-center dropdown-toggle__text"
               type="button"
               id="collectionSort"
               data-bs-toggle="dropdown"
               aria-expanded="false">
-              All
-              <svg xmlns="http://www.w3.org/2000/svg"
+              all
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="24"
                 height="24"
-                class="fill-accent h-8 w-8" >
+                class="fill-accent h-8 w-8"
+              >
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
               </svg>
             </button>
-            <div class="dropdown-menu dark:bg-jacarta-800 z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl"
+            <div
+              class="dropdown-menu dark:bg-jacarta-800 z-10 hidden min-w-[200px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl"
               aria-labelledby="collectionSort">
-              <a class="search_by_last dropdown-item dark:hover:bg-jacarta-600 hover:bg-jacarta-50 block rounded-xl px-5 py-2 text-sm transition-colors" day="1" >Last 24 Hours</a>
-              <a class="search_by_last dropdown-item dark:hover:bg-jacarta-600 hover:bg-jacarta-50 block rounded-xl px-5 py-2 text-sm transition-colors" day="7" >Last 7 Days</a>
-              <a class="search_by_last dropdown-item dark:hover:bg-jacarta-600 hover:bg-jacarta-50 block rounded-xl px-5 py-2 text-sm transition-colors" day="30" >Last 30 Days</a>
+              <a
+                class="search_by_last dropdown-item dark:hover:bg-jacarta-600 hover:bg-jacarta-50 block rounded-xl px-5 py-2 text-sm transition-colors" day="1"
+                >{{ __('Last 24 Hours') }}</a>
+              <a
+                class="search_by_last dropdown-item dark:hover:bg-jacarta-600 hover:bg-jacarta-50 block rounded-xl px-5 py-2 text-sm transition-colors" day="7"
+               >{{ __('Last 7 Days') }}</a>
+              <a
+                class="search_by_last dropdown-item dark:hover:bg-jacarta-600 hover:bg-jacarta-50 block rounded-xl px-5 py-2 text-sm transition-colors" day="30"
+               >{{ __('Last 30 Days') }}</a>
             </div>
           </div>
         </div>
@@ -572,7 +669,7 @@
     <a
         href="#"
         class="bg-accent shadow-accent-volume hover:bg-accent-dark inline-block rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
-        >Go to Rankings</a
+        >{{ __("Go to Rankings") }}</a
     >
     </div>
     </div>
@@ -596,14 +693,22 @@
         <div class="mb-8 flex flex-wrap items-center justify-between">
           <ul class="flex flex-wrap items-center categories-list">
             <li class="my-1 mr-2.5 categories-list__item">
-              <a style="cursor: pointer" id="allItems" cat-id="all"
-                class="filter__active active dark:border-jacarta-600 dark:bg-jacarta-900 dark:hover:bg-accent group hover:bg-accent border-jacarta-100 font-display text-jacarta-500 flex h-9 items-center rounded-lg border bg-white px-4 text-sm font-semibold transition-colors hover:border-transparent hover:text-white dark:text-white dark:hover:border-transparent dark:hover:text-white active chech_active"
+              <a
+                style="cursor: pointer" id="allItems"
+                class="filter__active active dark:border-jacarta-600 dark:bg-jacarta-900 dark:hover:bg-accent group hover:bg-accent
+                border-jacarta-100 font-display text-jacarta-500 flex h-9 items-center rounded-lg border bg-white px-4 text-sm font-semibold transition-colors hover:border-transparent hover:text-white dark:text-white dark:hover:border-transparent dark:hover:text-white"
                 >All</a
               >
             </li>
             @foreach (nftCategories() as $cat)
               <li class="my-1 mr-2.5 categories-list__item">
-                <a style="cursor:pointer" cat-id="{{ $cat->id }}" class="filter__active filterByCategory dark:border-jacarta-600 dark:bg-jacarta-900  dark:hover:bg-accent group hover:bg-accent border-jacarta-100 font-display text-jacarta-500 flex h-9 items-center rounded-lg border bg-white px-4 text-sm font-semibold transition-colors hover:border-transparent hover:text-white dark:text-white dark:hover:border-transparent dark:hover:text-white chech_active">
+                <a
+                  {{-- href="{{ route('cat_wise_item', $cat->id) }}" --}}
+                  style="cursor:pointer"
+                  cat-id="{{ $cat->id }}"
+                  class="filter__active filterByCategory dark:border-jacarta-600 dark:bg-jacarta-900 dark:hover:bg-accent group hover:bg-accent
+                  border-jacarta-100 font-display text-jacarta-500 flex h-9 items-center rounded-lg border bg-white px-4 text-sm font-semibold transition-colors hover:border-transparent hover:text-white dark:text-white dark:hover:border-transparent dark:hover:text-white"
+                >
                   <span class="mr-2">{!! $cat->icon !!}</span>
                   <span>{{ $cat->name }}</span>
                 </a>
@@ -611,28 +716,42 @@
               @endforeach
           </ul>
           <div class="dropdown my-1 cursor-pointer">
-            <div class=" dark:bg-jacarta-700 dropdown-toggle border-jacarta-100 dark:border-jacarta-600 inline-flex w-48 items-center justify-between rounded-lg border bg-white py-2 px-3 text-sm dark:text-white" role="button" id="categoriesSort" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="font-display sort_by__text">Sort By</span>
-              <svg xmlns="http://www.w3.org/2000/svg"
+            <div
+              class=" dark:bg-jacarta-700 dropdown-toggle border-jacarta-100 dark:border-jacarta-600 inline-flex w-48 items-center justify-between rounded-lg border bg-white py-2 px-3 text-sm dark:text-white"
+              role="button"
+              id="categoriesSort"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="font-display dropdown-toggle__text">{{ __('Recently Added') }}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="24"
                 height="24"
-                class="fill-jacarta-500 h-4 w-4 dark:fill-white">
+                class="fill-jacarta-500 h-4 w-4 dark:fill-white"
+              >
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" />
               </svg>
             </div>
 
-            <div class="dropdown-menu dark:bg-jacarta-800 z-10 hidden min-w-[220px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl" aria-labelledby="categoriesSort">
-              <button class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white sort__text" id="RecentlyAdded">
-                Recently Added
+            <div
+              class="dropdown-menu dark:bg-jacarta-800 z-10 hidden min-w-[220px] whitespace-nowrap rounded-xl bg-white py-4 px-2 text-left shadow-xl"
+              aria-labelledby="categoriesSort">
+              <span class="font-display text-jacarta-300 block px-5 py-2 text-sm font-semibold">{{ __('Sort By') }}</span>
+              <button
+                class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white" id="RecentlyAdded">
+                {{ __('Recently Added') }}
               </button>
-              <button class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white sort__text" id="LowToHigh">
-                Price: Low to High
+              <button
+                class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white" id="LowToHigh">
+                {{ __('Price: Low to High') }}
               </button>
 
-              <button class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white sort__text" id="HighToLow">
-                Price: High to Low
+              <button
+                class="dropdown-item font-display dark:hover:bg-jacarta-600 hover:bg-jacarta-50 flex w-full items-center justify-between rounded-xl px-5 py-2 text-left text-sm transition-colors dark:text-white" id="HighToLow">
+                {{ __('Price: High to Low') }}
               </button>
 
               {{-- <button
@@ -732,7 +851,7 @@
             <button
               class="hover:bg-accent-dark font-display bg-accent absolute top-2 right-2 rounded-full px-6 py-2 text-sm text-white"
             >
-              Subscribe
+              {{ __('Subscribe') }}
             </button>
           </form>
         </div>
@@ -746,7 +865,7 @@
     <div class="modal-dialog max-w-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="walletModalLabel">Connect your wallet</h5>
+          <h5 class="modal-title" id="walletModalLabel">{{ __('Connect your wallet') }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -860,8 +979,8 @@
             />
           </svg>
           <p class="text-center dark:text-white">
-            You don't have MetaMask in your browser, please download it from
-            <a href="https://metamask.io/" class="text-accent" target="_blank" rel="noreferrer noopener">MetaMask</a>
+            {{ __("You don't have MetaMask in your browser, please download it from") }}
+            <a href="https://metamask.io/" class="text-accent" target="_blank" rel="noreferrer noopener">{{ __('MetaMask') }}</a>
           </p>
         </div>
         <!-- end body -->
@@ -874,7 +993,7 @@
               rel="noreferrer noopener"
               class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
             >
-              Get Metamask
+              {{ __('Get Metamask') }}
             </a>
           </div>
         </div>
@@ -887,7 +1006,7 @@
     <div class="modal-dialog max-w-2xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="buyNowModalLabel">Complete checkout</h5>
+          <h5 class="modal-title" id="buyNowModalLabel">{{ __('Complete checkout') }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -1029,10 +1148,8 @@
 @section('js')
   <script>
     $(document).ready(function(){
-
         $('.search_by_last').click(function(){
             let day = $(this).attr('day');
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1055,7 +1172,6 @@
             $('.filter__active').removeClass('active');
             $(this).addClass('active');
             let cat_id = $(this).attr('cat-id');
-            // alert(cat_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1070,10 +1186,6 @@
                 },
                 success: function(data){
                     $('#filterByCategory').html(data.data);
-                    $('#RecentlyAdded').removeClass('active');
-                    $('#LowToHigh').removeClass('active');
-                    $('#HighToLow').removeClass('active');
-                    $(".sort_by__text").text('Sort By');
                 },
 
             });
@@ -1082,7 +1194,6 @@
         $('#allItems').click(function (){
             $('.filter__active').removeClass('active');
             $(this).addClass('active');
-            // alert('cat_id');
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1094,23 +1205,12 @@
                 type: "POST",
                 success: function(data){
                     $('#filterByCategory').html(data.data);
-                    $('#RecentlyAdded').removeClass('active');
-                    $('#LowToHigh').removeClass('active');
-                    $('#HighToLow').removeClass('active');
                 },
 
             });
         });
 
         $('#RecentlyAdded').click(function (){
-
-            let category_id= '';
-            $('.chech_active').each(function(){
-                if($(this).hasClass('active')){
-                    category_id = $(this).attr('cat-id');
-                    return false;
-                }
-            });
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1120,9 +1220,6 @@
             $.ajax({
                 url: "{{ route('RecentlyAdded') }}",
                 type: "POST",
-                data:{
-                    category_id:category_id,
-                },
                 success: function(data){
                     $('#filterByCategory').html(data.data);
                 },
@@ -1131,14 +1228,6 @@
         });
 
         $('#LowToHigh').click(function (){
-            let category_id= '';
-            $('.chech_active').each(function(){
-                if($(this).hasClass('active')){
-                    category_id = $(this).attr('cat-id');
-                    return false;
-                }
-            });
-            // console.log(category_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1148,26 +1237,15 @@
             $.ajax({
                 url: "{{ route('LowToHigh') }}",
                 type: "POST",
-                data:{
-                    category_id:category_id,
-                },
                 success: function(data){
                     $('#filterByCategory').html(data.data);
+                    location.reload();
                 },
 
             });
         });
 
         $('#HighToLow').click(function (){
-
-            let category_id= '';
-            $('.chech_active').each(function(){
-                if($(this).hasClass('active')){
-                    category_id = $(this).attr('cat-id');
-                    return false;
-                }
-            });
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1177,9 +1255,6 @@
             $.ajax({
                 url: "{{ route('HighToLow') }}",
                 type: "POST",
-                data: {
-                    category_id : category_id,
-                },
                 success: function(data){
                     $('#filterByCategory').html(data.data);
                 },
@@ -1189,7 +1264,6 @@
 
         $('.like_btn').click(function(){
             let item_id = $(this).attr('item_id');
-            // alert(item_id)
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1202,7 +1276,6 @@
                     item_id: item_id,
                 },
                 success: function(response){
-                    // console.log(response.item_id)
                     $(".likeCount" + response.item_id).html(response.count);
                     if (response.status != 200) {
                         $('.like_icon'+response.item_id).html(`<i class="fa-regular fa-heart"></i>`);
@@ -1219,10 +1292,9 @@
         });
 
         $('.placeBidBtn').on('click', function (){
-            let data_id    = $(this).attr('data-id');
-            let item_id    = $('.item_id'+data_id).val();
+            let data_id = $(this).attr('data-id');
+            let item_id = $('.item_id'+data_id).val();
             let bid_amount = $('.bid_amount'+data_id).val();
-            // alert(item_id);
             if ($('.terms').is(":checked")){
                 $.ajaxSetup({
                     headers: {
@@ -1233,11 +1305,11 @@
                     url: "{{ route('place_bid.store') }}",
                     type: "POST",
                     data: {
-                        item_id   : item_id,
+                        item_id: item_id,
                         bid_amount: bid_amount,
                     },
                     success: function(response){
-                        // console.log(response)
+                        console.log(response)
                         if(response.status == 500){
                             alertify.set('notifier','position', 'top-right');
                             alertify.error(response.message);
@@ -1296,7 +1368,8 @@
                     location.reload();
                 },
                 error: function(){
-                    $('#errorPass').html('<p style="color:#fa3232;font-weight:bold">Please provide valid Informaition</p>');
+                    $('#errorPassBid').html('<p style="color:#fa3232;font-weight:bold">Please provide valid Informaition</p>');
+                    $('.lds-facebook').hide();
                 },
             });
         });
@@ -1306,6 +1379,7 @@
             if (code == 13) {
                 var id = $(this).attr('data-id');
                 $('.loginFrom__Bid'+id).trigger('click');
+                $('.lds-facebook').show();
             }
         });
 
@@ -1313,6 +1387,7 @@
             var code = (e.keyCode ? e.keyCode : e.which);
             if (code == 13) {
                 $('.loginFromBannerModal').trigger('click');
+                $('.lds-facebook').show();
             }
         });
 
@@ -1341,12 +1416,12 @@
                     password: password,
                 },
                 success: function (response){
-                    console.log(response)
                     $('#loginFromBannerModal').modal('hide');
                     location.reload();
                 },
                 error: function(){
                     $('#errorPass').html('<p style="color:#fa3232;font-weight:bold">Please provide valid Informaition</p>');
+                    $('.lds-facebook').hide();
                 },
             });
         });
@@ -1356,18 +1431,12 @@
             $(".dropdown .dropdown-item").removeClass("active");
             $(this).addClass("active");
         });
-        $(".sort__text").on("click", function(){
-            $('.sort_by__text').text($(this).text());
-            $(".sort_by__text").removeClass("active");
-            $(this).addClass("active");
-        });
 
         $('.submitReport').on('click', function (){
             let data_id = $(this).attr('data-id');
             let item_id = $('.item_id'+data_id).val();
             let user_id = $('.user_id'+data_id).val();
             let report_id = $('.report_id'+data_id).val();
-            // alert(data_id);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1395,5 +1464,4 @@
         });
     });
   </script>
-
 @endsection

@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-    {{ config('app.name') }} | {{ __("Abouts") }}
+    {{ config('app.name') }} | {{ __("About us") }}
 @endsection
 
 {{-- Active Menu --}}

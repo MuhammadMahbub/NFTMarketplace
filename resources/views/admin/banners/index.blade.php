@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Banner
+     {{ __('Banner') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -14,13 +14,13 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __("Admin Dashboard") }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Hmoe') }}</a>
             </li>
-            <li class="breadcrumb-item active">Banner</li>
+            <li class="breadcrumb-item active">{{ __('Banner') }}</li>
         </ol>
     </div>
 @endsection
@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card-header">
-                        <h4 class="card-title">Update Banner</h4>
+                        <h4 class="card-title">{{ __("Update Banner") }}</h4>
                     </div>
                 </div>
             </div>
@@ -41,42 +41,42 @@
                 <form action="{{ route('banner.update', $banner->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label>Banner Title <span class="text-danger"> *</span></label>
+                        <label>{{ __('Banner Title') }} <span class="text-danger"> *</span></label>
                         <input type="text" name="title" class="form-control" value="{{ $banner->title }}">
                         @error('title')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Banner Sub-Title <span class="text-danger"> *</span></label>
+                        <label>{{ __('Banner Sub-Title') }} <span class="text-danger"> *</span></label>
                         <input type="text" name="sub_title" class="form-control" value="{{ $banner->sub_title }}">
                         @error('sub_title')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Banner Button 1 Text <span class="text-danger"> *</span></label>
+                        <label>{{ __('Banner Button 1 Text') }} <span class="text-danger"> *</span></label>
                         <input type="text" name="btn1_text" class="form-control" value="{{ $banner->btn1_text }}">
                         @error('btn1_text')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Banner Button 1 URL <span class="text-danger"> *</span></label>
+                        <label>{{ __("Banner Button 1 URL") }} <span class="text-danger"> *</span></label>
                         <input type="text" name="btn1_url" class="form-control" value="{{ $banner->btn1_url }}">
                         @error('btn1_url')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Banner Button 2 Text <span class="text-danger"> *</span></label>
+                        <label>{{ __("Banner Button 2 Text") }} <span class="text-danger"> *</span></label>
                         <input type="text" name="btn2_text" class="form-control" value="{{ $banner->btn2_text }}">
                         @error('btn2_text')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Banner Button 2 URL <span class="text-danger"> *</span></label>
+                        <label>{{ __('Banner Button 2 URL') }} <span class="text-danger"> *</span></label>
                         <input type="text" name="btn2_url" class="form-control" value="{{ $banner->btn2_url }}">
                         @error('btn2_url')
                             <span class="text-danger">{{ $message }}</span>
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col-lg-10">
                             <div class="form-group mt-2">
-                                <label class="form-label">Image </label>
+                                <label class="form-label">{{ __('Image') }} </label>
                                 <input type="file" name="image" class="form-control">
                                 @error('image')
                                     <span class="text-danger">{{ $message }}</span>
@@ -96,7 +96,7 @@
                             <img src="{{ asset('uploads/images/banner') }}/{{ $banner->image }}" style="height:100px; width: 100px" alt="Banner Image">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Update Banner data</button>
+                    <button type="submit" class="btn btn-primary mt-3">{{ __("Update Banner data") }}</button>
                 </form>
             </div>
 

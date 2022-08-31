@@ -63,9 +63,6 @@ class ItemController extends Controller
             'price' => 'numeric|min:0',
             'quantity' => 'numeric|min:0',
             'expire_date' => 'required|date|after:today',
-            // 'propertyname' => 'required',
-            // 'propertytype' => 'required',
-            // 'propertytrait' => 'required',
         ]);
 
         $slug = Str::slug($request->name) . "-" . time();

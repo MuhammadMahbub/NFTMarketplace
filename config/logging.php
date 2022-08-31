@@ -113,6 +113,10 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'tareq' => [
+            'path' => storage_path('logs/tareq.log'),
+        ],
     ],
 
 ];

@@ -2,7 +2,7 @@
 
     {{-- Title --}}
     @section('title')
-        {{ config('app.name') }} | brandImage
+        {{ config('app.name') }} | {{ __('Brand Image') }}
     @endsection
 
     {{-- Active Menu --}}
@@ -13,14 +13,14 @@
 
     {{-- Breadcrumb --}}
     @section('breadcrumb')
-         <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+         <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
         <div class="breadcrumb-wrapper">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('dashboard') }}">Home</a>
+                    <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
                 </li>
                 <li class="breadcrumb-item active">
-                    <a class="text-muted">Brand Image Update</a>
+                    <a class="text-muted">{{ __('Brand Image Update') }}</a>
                 </li>
             </ol>
         </div>
@@ -33,7 +33,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="col-md-6">
-                        <h4 class="card-title">Update Brand Image</h4>
+                        <h4 class="card-title">{{ __('Update Brand Image') }}</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-10">
                                 <div class="form-group mt-2">
-                                    <label class="form-label">Image</label>
+                                    <label class="form-label">{{ __('Image') }}</label>
                                     <input type="file" name="image" class="form-control">
                                     @error('image')
                                         <span class="text-danger">{{ $message }}</span>
@@ -54,7 +54,7 @@
                                 <img style="height: 80px;width:80px; border-radius:5px" src="{{ asset('uploads/images/partner/brand') }}/{{ $brandImage->image }}">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-3">{{ __('Submit') }}</button>
                     </form>
                 </div>
 

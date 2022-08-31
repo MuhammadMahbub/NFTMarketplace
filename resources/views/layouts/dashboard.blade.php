@@ -162,11 +162,11 @@
                         </li>
                         @if ($unseen_notifications->count() > 0)
                         <li class="dropdown-menu-footer">
-                            <a class="btn btn-primary btn-block" href="{{ route('mark_all_notify', Auth::id()) }}">Mark as All Read</a>
+                            <a class="btn btn-primary btn-block" href="{{ route('mark_all_notify', Auth::id()) }}">{{ __('Mark All as Read') }}</a>
                         </li>
                         @endif
                         <li class="dropdown-menu-footer">
-                            <a class="btn btn-info btn-block" href="{{ route('view_all_notify', Auth::id()) }}">View All Notifications</a>
+                            <a class="btn btn-info btn-block" href="{{ route('view_all_notify', Auth::user()->slug) }}">{{ __('View All Notifications') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -184,7 +184,7 @@
                         </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                        <a class="dropdown-item" href="{{ route('profile_edit', Auth::user()->slug) }}"><i class="mr-50" data-feather="user"></i> Profile</a>
+                        <a class="dropdown-item" href="{{ route('profile_edit', Auth::user()->slug) }}"><i class="mr-50" data-feather="user"></i> {{ __('Profile') }}</a>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -564,7 +564,7 @@
                     </a>
                 </li>
                 <li class="nav-item @yield('notifications')">
-                    <a class="d-flex align-items-center" href="{{ route('view_all_notify', Auth::id()) }}">
+                    <a class="d-flex align-items-center" href="{{ route('view_all_notify', Auth::user()->slug) }}">
                         <i data-feather='bell'></i>
                         <span class="menu-title text-truncate" data-i18n="Email">{{ __('Notifications') }}</span>
                     </a>
@@ -661,13 +661,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel1">Basic Modal</h4>
+                    <h4 class="modal-title" id="myModalLabel1">{{ __('Basic Modal') }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h5>Check First Paragraph</h5>
+                    <h5>{{ __('Check First Paragraph') }}</h5>
                     <p>
                         Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie. Brownie
                         carrot cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
@@ -798,6 +798,12 @@
     @if (session()->get('warning'))
         <script>
             toastr.warning('{{ session()->get('warning') }}');
+        </script>
+    @endif
+
+    @if (session()->get('danger'))
+        <script>
+            toastr.error('{{ session()->get('danger') }}');
         </script>
     @endif
 

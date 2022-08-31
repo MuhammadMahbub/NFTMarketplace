@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Report Item
+     {{ __("Report Item") }}
 @endsection
 
 {{-- Active Menu --}}
@@ -14,14 +14,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __("Admin Dashboard") }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __("Home") }}</a>
             </li>
-            <li class="breadcrumb-item">Report Item</li>
-            <li class="breadcrumb-item active">List</li>
+            <li class="breadcrumb-item">{{ __('Report') }}</li>
+            <li class="breadcrumb-item active">{{ __("List") }}</li>
         </ol>
     </div>
 @endsection
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="card-header">
-                        <h4 class="card-title">Report Item List</h4>
+                        <h4 class="card-title">{{ __('List') }}</h4>
                     </div>
                 </div>
             </div>
@@ -43,19 +43,19 @@
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>User Name</th>
-                                <th>Item </th>
-                                <th>Report</th>
-                                <th>Action</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __('User Name') }}</th>
+                                <th>{{ __("Item") }} </th>
+                                <th>{{ __("Report") }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($problems as $report)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $report->getUser->name ?? 'N/A'}}</td>
-                                <td>{{ $report->getItem->name ?? 'N/A'}}</td>
+                                <td><a href="{{ route('user',$report->getUser->id ?? '') }}">{{ $report->getUser->name ?? 'N/A'}}</a></td>
+                                <td><a href="{{ route('item_details', $report->getItem->slug ?? '') }}">{{ $report->getItem->name ?? 'N/A'}}</a></td>
                                 <td>
                                     {{ $report->getProblem->problem ?? 'N/A'}}
                                 </td>
@@ -68,7 +68,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter{{ $report->id }}" title="Delete">
                                                 <i data-feather="trash" class="mr-50"></i>
-                                                <span>Delete</span>
+                                                <span>{{ __('Delete') }}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -80,20 +80,20 @@
                                     <div class="modal-lg modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ __('Report') }}</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Are You Sure To Delete This Report?
+                                                {{ __('Are You Sure To Delete This Report?') }}
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                <form action="{{ route('ItemProblem.destroy', $report->id) }}" method="POST">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Close') }}</button>
+                                                <form action="{{ route('ItemProblem.destroy', $report->id ?? '') }}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                    <button type="submit" class="btn btn-primary">{{ __('Delete') }}</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <a class="btn mt-1 btn-success" href="{{ route('ItemReport.index') }}">Return Back</a>
+                    <a class="btn mt-1 btn-success" href="{{ route('ItemReport.index') }}">{{ __('Return Back') }}</a>
                 </div>
             </div>
         </div>

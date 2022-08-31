@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Bids Item
+     {{ __('Bid Item') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -14,14 +14,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
-            <li class="breadcrumb-item">Bids</li>
-            <li class="breadcrumb-item active">Item</li>
+            <li class="breadcrumb-item">{{ __('Bid') }}</li>
+            <li class="breadcrumb-item active">{{ __('List') }}</li>
         </ol>
     </div>
 @endsection
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="card-header">
-                        <h4 class="card-title">Bids Item List</h4>
+                        <h4 class="card-title">{{ __('List') }}</h4>
                     </div>
                 </div>
             </div>
@@ -43,19 +43,19 @@
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>User Name</th>
-                                <th>Item Name </th>
-                                <th>Bid Value </th>
-                                <th>Action</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __('User Name') }}</th>
+                                <th>{{ __('Item Name') }} </th>
+                                <th>{{ __('Bid Value') }} </th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($bids as $bid)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ App\Models\User::find($bid->user_id)->name ?? 'N/A'}}</td>
-                                <td>{{ App\Models\Item::find($bid->item_id)->name ?? 'N/A'}}</td>
+                                <td><a href="{{ route('user', $bid->getUser->id) }}">{{ $bid->getUser->name ?? 'N/A'}}</a></td>
+                                <td><a href="{{ route('item_details', $bid->getItem->slug ?? '') }}">{{ $bid->getItem->name ?? 'N/A'}}</a></td>
                                 <td>{{ $bid->bid_amount ?? '0'}}</td>
                                 <td>
                                     <div class="dropdown">
@@ -66,7 +66,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter{{ $bid->id }}" title="Delete">
                                                 <i data-feather="trash" class="mr-50"></i>
-                                                <span>Delete</span>
+                                                <span>{{ __('Delete') }}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -78,20 +78,20 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete Report</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ __('Delete Report') }}</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Are You Sure To Delete This Bid?
+                                                {{ __("Are You Sure To Delete This Bid?") }}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                                                 <form action="{{ route('bid_destroy', $bid->id) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -101,7 +101,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <a class="btn mt-1 btn-success" href="{{ route('bid_items') }}">Return Back</a>
+                    <a class="btn mt-1 btn-success" href="{{ route('bid_items') }}">{{ __("Return Back") }}</a>
                 </div>
             </div>
         </div>

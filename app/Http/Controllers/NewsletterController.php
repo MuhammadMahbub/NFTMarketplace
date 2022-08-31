@@ -18,9 +18,7 @@ class NewsletterController extends Controller
 
     public function update(Request $request, Newsletter $newsletter)
     {
-        $request->validate([
-            'meta_title' => 'required',
-        ]);
+        $request->validate(['meta_title'=>'required']);
         $request->validate(['title' => 'required']);
         $newsletter = Newsletter::find($newsletter->id)->first();
         $newsletter->update($request->except('_token') + ['created_at' => Carbon::now()]);

@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Report Item
+     {{ __('Report Item') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -12,14 +12,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
-            <li class="breadcrumb-item">Report</li>
-            <li class="breadcrumb-item active">List</li>
+            <li class="breadcrumb-item">{{ __('Report') }}</li>
+            <li class="breadcrumb-item active">{{ __('List') }}</li>
         </ol>
     </div>
 @endsection
@@ -31,11 +31,11 @@
         <div class="card">
             <div class="row flex">
                 <div class="col-md-3">
-                    <button style="margin: 21px 21px 0 21px;" class="btn btn-gradient-primary float-left"><a style="color: #f1f1f1" href="{{ route('seeReport') }}">All Reports</a></button>
+                    <button style="margin: 21px 21px 0 21px;" class="btn btn-gradient-primary float-left"><a style="color: #f1f1f1" href="{{ route('seeReport') }}">{{ __('All Reports') }}</a></button>
                 </div>
                 <div class="col-md-6"></div>
                 <div class="col-md-3">
-                    <button style="margin: 21px 21px 0 0;" class="btn btn-gradient-primary float-right"><a style="color: #f1f1f1" data-toggle="modal" data-target="#createReport">Create Report</a></button>
+                    <button style="margin: 21px 21px 0 0;" class="btn btn-gradient-primary float-right"><a style="color: #f1f1f1" data-toggle="modal" data-target="#createReport">{{ __('Create Report') }}</a></button>
                 </div>
             </div>
             <div class="card-body">
@@ -43,9 +43,9 @@
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>Report</th>
-                                <th>Action</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __('Report') }}</th>
+                                <th>{{ __("Action") }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,11 +64,11 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" data-toggle="modal" data-target="#editReport{{ $report->id }}">
                                                 <i data-feather='edit' class="mr-50"></i>
-                                                <span>Edit</span>
+                                                <span>{{ __('Edit') }}</span>
                                             </a>
                                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter{{ $report->id }}" title="Delete">
                                                 <i data-feather="trash" class="mr-50"></i>
-                                                <span>Delete</span>
+                                                <span>{{ __('Delete') }}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -81,20 +81,20 @@
                                     <div class="modal-lg modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ __('Report') }}</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Are You Sure To Delete This Report?
+                                                {{ __("Are You Sure To Delete This Report?") }}
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-info" data-dismiss="modal">{{ __('Close') }}</button>
                                                 <form action="{{ route('ItemReport.destroy', $report->id) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger">{{ __("Delete") }}</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                     <div class="modal-lg modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Update Report</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ __("Update Report") }}</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -116,13 +116,13 @@
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="form-group">
-                                                        <label for="problem">Problem <span class="text-danger">*</span></label>
+                                                        <label for="problem">{{ __('Problem') }} <span class="text-danger">*</span></label>
                                                         <input type="text" class="form-control" id="problem" name="problem" value="{{ $report->problem }}">
                                                     </div>
                                                     @error('problem')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                                                 </form>
 
                                             </div>
@@ -137,7 +137,7 @@
                                     <div class="modal-lg modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Create Report</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ __('Create Report') }}</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -146,13 +146,13 @@
                                                 <form method="POST" action="{{ route('ItemReport.store') }}">
                                                     @csrf
                                                     <div class="form-group">
-                                                        <label for="problem">Problem <span class="text-danger">*</span></label>
+                                                        <label for="problem">{{ __('Problem') }} <span class="text-danger">*</span></label>
                                                         <input type="text" class="form-control" id="problem" name="problem" value="{{ old('problem') }}">
                                                     </div>
                                                     @error('problem')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                                                 </form>
                                             </div>
                                         </div>

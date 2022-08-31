@@ -2,7 +2,7 @@
 
 {{-- title --}}
 @section('title')
- Single Blog
+ {{ __('Single Blog') }}
 @endsection
 
 {{-- content --}}
@@ -10,7 +10,7 @@
 <section class="banner-main-section all-pages-input" id="main">
     <div class="row">
         <div class="col-12">
-            <h2 class="dash-ad-title m-0 mb-3">Admin Dashboard | <span class="dash-span-title">Show Blog</span></h2>
+            <h2 class="dash-ad-title m-0 mb-3">{{ __('Admin Dashboard') }} | <span class="dash-span-title">{{ __('Show Blog') }}</span></h2>
         </div>
     </div>
     <div class="row">
@@ -19,7 +19,7 @@
                 <div class="col-lg-12 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"> Show </h4>
+                            <h4 class="card-title"> {{ __('Show') }} </h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -29,7 +29,7 @@
                                             <tbody>
                                                 <tr>
                                                     <th>
-                                                        Title
+                                                        {{ __('Title') }}
                                                     </th>
                                                     <td>
                                                         {{ $blog->title }}
@@ -37,7 +37,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Sub Title
+                                                        {{ __("Sub Title") }}
                                                     </th>
                                                     <td>
                                                         {{ $blog->subtitle }}
@@ -45,7 +45,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Main Image
+                                                        {{ __('Main Image') }}
                                                     </th>
                                                     <td>
                                                         <img style="height:100px; width: 100px" src="{{ asset('uploads/images/blog') }}/{{ $blog->main_image }}" alt="Blog Main Image">
@@ -53,7 +53,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Image 1
+                                                        {{ __("Image 1") }}
                                                     </th>
                                                     <td>
                                                         <img style="height:100px; width: 100px" src="{{ asset('uploads/images/blog') }}/{{ $blog->image1 }}" alt="Blog Image">
@@ -61,7 +61,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Image 2
+                                                        {{ __('Image 2') }}
                                                     </th>
                                                     <td>
                                                         <img style="height:100px; width: 100px" src="{{ asset('uploads/images/blog') }}/{{ $blog->image2 }}" alt="Blog Image">
@@ -69,7 +69,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Quote
+                                                        {{ __('Quote') }}
                                                     </th>
                                                     <td>
                                                         {{ $blog->quote }}
@@ -77,7 +77,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Quote Name
+                                                        {{ __('Quote Name') }}
                                                     </th>
                                                     <td>
                                                         {{ $blog->quote_name }}
@@ -85,7 +85,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Author Comment
+                                                        {{ __('Author Comment') }}
                                                     </th>
                                                     <td>
                                                         {{ $blog->author_comment }}
@@ -93,7 +93,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>
-                                                        Description
+                                                        {{ __('Description') }}
                                                     </th>
                                                     <td>
                                                         {!! $blog->description !!}
@@ -101,8 +101,8 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <a class="btn mt-1 btn-success" href="{{ route('blogs.index') }}">Return Back</a>
-                                        <a class="btn edit-btn mt-1 btn-primary" href="{{ route('blogs.edit', $blog->id) }}">Edit</a>
+                                        <a class="btn mt-1 btn-success" href="{{ route('blogs.index') }}">{{ __('Return Back') }}</a>
+                                        <a class="btn edit-btn mt-1 btn-primary" href="{{ route('blogs.edit', $blog->id) }}">{{ __('Edit') }}</a>
                                     </div>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-    Product
+    {{ __('Policy') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -18,17 +18,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-    <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+    <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ route('product.index') }}">Product</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
             <li class="breadcrumb-item active">
-                Product Details
+                <a href="{{ route('product.index') }}">{{ __('Policy') }}</a>
             </li>
         </ol>
     </div>
@@ -36,17 +33,17 @@
 
 @section('content')
     <div class="mb-3">
-        <a href="{{ route('term_service.index') }}" class="btn btn-dark">Return Back </a>
+        <a href="{{ route('term_service.index') }}" class="btn btn-dark">{{ __('Return Back') }} </a>
     </div>
     <div class="row">
         <div class="col-12">
             <table class="table table-bordered border-width-3">
                 <tr>
-                    <th> Title </th>
+                    <th> {{ __('Title') }} </th>
                     <td>{{ $termService->title }}</td>
                 </tr>
                 <tr>
-                    <th> Description </th>
+                    <th> {{ __('Description') }} </th>
                     <td>{!! $termService->description !!}</td>
                 </tr>
 

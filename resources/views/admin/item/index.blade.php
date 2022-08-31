@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-{{ config('app.name') }} | Item
+{{ config('app.name') }} | {{ __('Item') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -12,14 +12,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
-            <li class="breadcrumb-item">Item</li>
-            <li class="breadcrumb-item active">List</li>
+            <li class="breadcrumb-item">{{ __("Item") }}</li>
+            <li class="breadcrumb-item active">{{ __('List') }}</li>
         </ol>
     </div>
 @endsection
@@ -32,11 +32,11 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="card-header">
-                        <h4 class="card-title">Items</h4>
+                        <h4 class="card-title">{{ __('Items') }}</h4>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <button style="margin: 21px 21px 0 0;" class="btn btn-gradient-primary float-right"><a style="color: #f1f1f1" href="{{ route('item.create') }}">Create Item</a></button>
+                    <button style="margin: 21px 21px 0 0;" class="btn btn-gradient-primary float-right"><a style="color: #f1f1f1" href="{{ route('item.create') }}">{{ __('Create Item') }}</a></button>
                 </div>
             </div>
             <div class="card-body">
@@ -44,15 +44,15 @@
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Creator</th>
-                                <th>Image</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __("Name") }}</th>
+                                <th>{{ __('Category') }}</th>
+                                <th>{{ __('Creator') }}</th>
+                                <th>{{ __('Image') }}</th>
+                                <th>{{ __('Price') }}</th>
+                                <th>{{ __('Quantity') }}</th>
+                                <th>{{ __('Status') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,7 +84,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{ route('item.show', $item->id ?? '') }}">
                                                 <i data-feather='eye' class="mr-50"></i>
-                                                <span>Show</span>
+                                                <span>{{ __('Show') }}</span>
                                             </a>
                                             {{-- @if ($item->get_creator->role_id != 1)
                                             <a class="dropdown-item" href="{{ route('item_edit', $item->id ?? '') }}">
@@ -94,16 +94,16 @@
                                             @else --}}
                                             <a class="dropdown-item" href="{{ route('item.edit', $item->id ?? '') }}">
                                                 <i data-feather='edit' class="mr-50"></i>
-                                                <span>Edit Item</span>
+                                                <span>{{ __('Edit Item') }}</span>
                                             </a>
                                             <a class="dropdown-item" href="{{ route('status_change', $item->id ?? '') }}">
                                                 <i data-feather='edit-2' class="mr-50"></i>
-                                                <span>Set Status</span>
+                                                <span>{{ __('Set Status') }}</span>
                                             </a>
                                             {{-- @endif --}}
                                             <a class="dropdown-item" data-toggle="modal" data-target="#deleteModal{{ $item->id }}" title="Delete">
                                                 <i data-feather="trash" class="mr-50"></i>
-                                                <span>Delete</span>
+                                                <span>{{ __("Delete") }}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -116,20 +116,20 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Item Delete</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ __('Item Delete') }}</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Are You Sure To Delete This Item?
+                                                {{ __('Are You Sure To Delete This Item?') }}
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-info" data-dismiss="modal">{{ __('Close') }}</button>
                                                 <form action="{{ route('item.destroy', $item->id ?? '') }}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
                                                 </form>
                                             </div>
                                         </div>

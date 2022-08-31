@@ -341,6 +341,7 @@
                     let message = $('#message').val('');
                     alertify.set('notifier','position', 'top-right');
                     alertify.success(response.success);
+                    $('#errorText').hide();
                 },
                 error: function(reject){
                         alertify.set('notifier','position', 'top-right');

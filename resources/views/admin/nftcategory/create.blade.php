@@ -2,7 +2,7 @@
 
     {{-- Title --}}
     @section('title')
-        {{ config('app.name') }} | NFT Categories
+        {{ config('app.name') }} | {{ __('NFT Categories') }}
     @endsection
 
     {{-- Active Menu --}}
@@ -13,11 +13,11 @@
 
     {{-- Breadcrumb --}}
     @section('breadcrumb')
-         <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+         <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
         <div class="breadcrumb-wrapper">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active">
-                    <a href="{{ route('dashboard') }}">Home</a>
+                    <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
                 </li>
             </ol>
         </div>
@@ -30,35 +30,35 @@
             <div class="card">
                 <div class="card-header">
                     <div class="col-md-6">
-                        <h4 class="card-title">Create Category</h4>
+                        <h4 class="card-title">{{ __('Create Category') }}</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('nft_category.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mt-2">
-                            <label class="form-label">Name <span class="text-danger"> *</span></label>
+                            <label class="form-label">{{ __('Name') }} <span class="text-danger"> *</span></label>
                             <input type="text" name="name" class="form-control" value="{{ old('name') }}">
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group mt-2">
-                            <label class="form-label">Icon (Icon link: <a href="https://fontawesome.com/" target="_blank">Font Awesome</a>)<span class="text-danger"> *</span></label>
+                            <label class="form-label">{{ __('Icon') }} ({{ __('Icon link') }}: <a href="https://fontawesome.com/" target="_blank">{{ __('Font Awesome') }}</a>)<span class="text-danger"> *</span></label>
                             <input type="text" name="icon" class="form-control" value="{{ old('icon') }}">
                             @error('icon')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group mt-2">
-                            <label class="form-label">Image (Size: 1350px*300px)<span class="text-danger"> *</span></label>
+                            <label class="form-label">{{ __('Image') }} ({{ __('Size') }}: 1350px*300px)<span class="text-danger"> *</span></label>
                             <input type="file" name="image" class="form-control">
                             @error('image')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="description"><b>Description</b> <span class="text-danger">*</span></label>
+                            <label for="description"><b>{{ __('Description') }}</b> <span class="text-danger">*</span></label>
                             <input id="description" type="hidden" name="description" value="{{ old('description') }}" />
                             <trix-editor input="description" class="trix-content"></trix-editor>
                             @error('description')
@@ -79,7 +79,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div> --}}
-                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-3">{{ __('Submit') }}</button>
                     </form>
                 </div>
 

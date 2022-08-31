@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="total_users_value">{{ _('Total Users value') }}<span class="text-danger"> *</span></label>
+                                        <label for="total_users_value">{{ __('Total Users Value') }}<span class="text-danger"> *</span></label>
                                         <input type="text" name="total_users_value" value="{{ $countInfo->total_users_value }}" id="total_users_value" class="form-control"/>
                                         @error('total_users_value')
                                             <small class="text-danger">{{ $message }}</small>

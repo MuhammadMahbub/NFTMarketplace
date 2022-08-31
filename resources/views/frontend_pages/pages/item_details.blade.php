@@ -1,5 +1,46 @@
 @extends('layouts.app')
+@push('css')
+    <style>
+        .lds-facebook {
+            display: inline-block;
+            position: relative;
+            width: 30px;
+            height: 30px;
+            }
+            .lds-facebook div {
+            margin-top: 7px !important;
+            display: inline-block;
+            position: absolute;
+            left: 3px;
+            width: 6px;
+            background: #fff;
+            animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+            }
+            .lds-facebook div:nth-child(1) {
+            left: 4px;
+            animation-delay: -0.24s;
+            }
+            .lds-facebook div:nth-child(2) {
+            left: 16px;
+            animation-delay: -0.12s;
+            }
+            .lds-facebook div:nth-child(3) {
+            left: 28px;
+            animation-delay: 0;
+            }
+            @keyframes lds-facebook {
+            0% {
+                top: 4px;
+                height: 24px;
+            }
+            50%, 100% {
+                top: 10px;
+                height: 12px;
+            }
+        }
 
+    </style>
+@endpush
 @section('content')
 
 <main>
@@ -281,7 +322,7 @@
                                             placeholder="Password"
                                             />
                                         </div>
-                                        <span id="errorPass"></span>
+                                        <span class="errorPass"></span>
                                         <div class="flex items-center justify-center space-x-4">
                                             <a
                                                 data_id="{{ $single_item->id }}"
@@ -290,6 +331,7 @@
                                                 class="placeBidBtn loginFromBid loginFrom__Bid{{ $single_item->id }} bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
                                                 >
                                                 {{ __('Login') }}
+                                                <div style="display:none;" class="lds-facebook"><div></div><div></div><div></div></div>
                                             </a>
                                         </div>
 
@@ -638,7 +680,7 @@
                 @endpush
 
                 {{-- login modal --}}
-              @push('modals')
+              {{-- @push('modals')
               <div class="modal loginModal fade" id="loginModal{{ $single_item->id }}" tabindex="-1" aria-labelledby="placeBidLabel" aria-hidden="true">
                   <form>
                       <div class="modal-dialog max-w-2xl">
@@ -714,7 +756,7 @@
                       </div>
                   </form>
               </div>
-              @endpush
+              @endpush --}}
             </div>
             <!-- end bid -->
           </div>
@@ -1946,10 +1988,11 @@
                                             <input
                                             type="password"
                                             name="password"
-                                            class="password{{ $related->id }} focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset"
+                                            class="password{{ $related->id }} relatedItem_input focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset"
                                             placeholder="Password"
                                             />
                                         </div>
+                                        <span class="errorPass"></span>
                                         <div class="flex items-center justify-center space-x-4">
                                             <a
                                                 data_id="{{ $related->id }}"
@@ -1958,6 +2001,7 @@
                                                 class="placeBidBtn loginFromBid bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
                                                 >
                                                 {{ __('Login') }}
+                                                <div style="display:none;" class="lds-facebook"><div></div><div></div><div></div></div>
                                             </a>
                                         </div>
 
@@ -2408,23 +2452,27 @@
             });
         });
     </script>
-
     <script>
+         $(".login__Input").keypress(function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                $('.loginFromBid').trigger('click');
+                $('.lds-facebook').show();
+            }
+        });
+
+        $(".relatedItem_input").keypress(function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                $('.loginFromBid').trigger('click');
+                $('.lds-facebook').show();
+            }
+        });
         $(document).ready(function () {
             $('.loginFromBid').on('click', function (){
                 let data_id = $(this).attr('data_id');
-                // alert(data_id)
-
                 let email = $('.email'+data_id).val();
                 let password = $('.password'+data_id).val();
-                if(email == ''){
-                    alertify.set('notifier','position', 'top-right');
-                    alertify.error("Please Put Valid Emal");
-                }
-                if(password == ''){
-                    alertify.set('notifier','position', 'top-right');
-                    alertify.error("Please Put Valid Password");
-                }
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -2439,10 +2487,14 @@
                         password: password,
                     },
                     success: function (response){
-                        // console.log(response)
                         $('.loginModal').modal('hide');
                         location.reload();
+                    },
+                    error: function (){
+                        $('.errorPass').html('<p style="color:#fa3232;font-weight:bold">Please provide valid Informaition</p>');
+                        $('.lds-facebook').hide();
                     }
+
                 });
             });
         });
@@ -2451,37 +2503,33 @@
     <script>
         $(document).ready(function(){
             $('.submitReport').on('click', function (){
-                // let data_id = $(this).attr('data-id');
                 let item_id = $('.item_id').val();
                 let user_id = $('.user_id').val();
                 let report_id = $('.report_id').val();
-                // alert(report_id);
-
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('ItemReport.problemStore') }}",
+                    type: "POST",
+                    data: {
+                        item_id: item_id,
+                        user_id: user_id,
+                        report_id: report_id,
+                    },
+                    success: function(response){
+                        if(response.status==200){
+                            alertify.set('notifier','position', 'top-right');
+                            alertify.success(response.message);
+                            location.reload()
+                        }else{
+                            alertify.set('notifier','position', 'top-right');
+                            alertify.error(response.message);
                         }
-                    });
-                    $.ajax({
-                        url: "{{ route('ItemReport.problemStore') }}",
-                        type: "POST",
-                        data: {
-                            item_id: item_id,
-                            user_id: user_id,
-                            report_id: report_id,
-                        },
-                        success: function(response){
-                            // console.log(response)
-                            if(response.status==200){
-                                alertify.set('notifier','position', 'top-right');
-                                alertify.success(response.message);
-                                location.reload()
-                            }else{
-                                alertify.set('notifier','position', 'top-right');
-                                alertify.error(response.message);
-                            }
-                        },
-                    });
+                    },
+                });
             });
         });
     </script>

@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Blogs
+     {{ __('Blogs') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -14,14 +14,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
-            <li class="breadcrumb-item">Blog</li>
-            <li class="breadcrumb-item active">List</li>
+            <li class="breadcrumb-item">{{ __('Blog') }}</li>
+            <li class="breadcrumb-item active">{{ __('List') }}</li>
         </ol>
     </div>
 @endsection
@@ -34,11 +34,11 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="card-header">
-                        <h4 class="card-title">List</h4>
+                        <h4 class="card-title">{{ __('List') }}</h4>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <button style="margin: 21px 21px 0 0;" class="btn btn-gradient-primary float-right"><a style="color: #f1f1f1" href="{{ route('blogs.create') }}">Create Blog</a></button>
+                    <button style="margin: 21px 21px 0 0;" class="btn btn-gradient-primary float-right"><a style="color: #f1f1f1" href="{{ route('blogs.create') }}">{{ __('Create Blog') }}</a></button>
                 </div>
             </div>
             <div class="card-body">
@@ -46,9 +46,9 @@
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>Blog Title</th>
-                                <th>Action</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __('Blog Title') }}</th>
+                                <th>{{ __('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,15 +67,15 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="{{ route('blogs.show', $blog->id) }}">
                                                 <i data-feather='eye' class="mr-50"></i>
-                                                <span>Show</span>
+                                                <span>{{ __('Show') }}</span>
                                             </a>
                                             <a class="dropdown-item" href="{{ route('blogs.edit', $blog->id) }}">
                                                 <i data-feather='edit' class="mr-50"></i>
-                                                <span>Edit</span>
+                                                <span>{{ __('Edit') }}</span>
                                             </a>
                                             <a class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter{{ $blog->id }}" title="Delete">
                                                 <i data-feather="trash" class="mr-50"></i>
-                                                <span>Delete</span>
+                                                <span>{{ __('Delete') }}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -88,20 +88,20 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Blog</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ __('Blog') }}</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                Are You Sure To Delete Entire Blog?
+                                                {{ __('Are You Sure To Delete Entire Blog?') }}
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">{{ __('Close') }}</button>
                                                 <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST">
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                    <button type="submit" class="btn btn-primary">{{ __('Delete') }}</button>
                                                 </form>
                                             </div>
                                         </div>

@@ -17,6 +17,6 @@ class PlaceBid extends Model
 
     public function getItem()
     {
-        return $this->hasOne(Item::class,'id','item_id');
+        return $this->belongsTo(Item::class, 'item_id');
     }
 }

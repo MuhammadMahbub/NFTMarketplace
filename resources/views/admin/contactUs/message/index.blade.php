@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-    {{ config('app.name') }} | User Messages
+    {{ config('app.name') }} | {{ __('User Messages') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -13,14 +13,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
             <li class="breadcrumb-item active">
-                User Messages
+                {{ __('User Messages') }}
             </li>
         </ol>
     </div>
@@ -32,18 +32,18 @@
     <div class="col-12 m-auto">
         <div class="card">
             <div class="card-header d-flex">
-                <h4 class="card-title">User List</h4>
+                <h4 class="card-title">{{ __('User List') }}</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="data_table">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Message</th>
-                                <th>Actions</th>
+                                <th>{{ __('Sl') }}</th>
+                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('Email') }}</th>
+                                <th>{{ __('Message') }}</th>
+                                <th>{{ __('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,7 +62,7 @@
                                             @if ($message->role_id != 1)
                                             <a class="dropdown-item" data-toggle="modal" data-target="#messageDelete{{ $message->id }}" title="delete">
                                                 <i data-feather="trash" class="mr-50"></i>
-                                                <span>Delete</span>
+                                                <span>{{ __('Delete') }}</span>
                                             </a>
                                             @endif
                                         </div>
@@ -78,14 +78,14 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Are You Sure Delete The message?
+                                            {{ __('Are You Sure Delete The message?') }}
                                         </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
                                         <form action="{{ route('userMessage.destroy', $message->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
                                         </form>
                                     </div>
                                     </div>
@@ -96,7 +96,6 @@
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

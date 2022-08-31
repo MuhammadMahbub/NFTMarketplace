@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-{{ config('app.name') }} | Item
+{{ config('app.name') }} | {{ __('Item') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -12,14 +12,14 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-     <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+     <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
-            <li class="breadcrumb-item">Items</li>
-            <li class="breadcrumb-item active">Create</li>
+            <li class="breadcrumb-item">{{ __('Items') }}</li>
+            <li class="breadcrumb-item active">{{ __('Create') }}</li>
         </ol>
     </div>
 @endsection
@@ -33,7 +33,7 @@
                     @csrf
                     @method("PUT")
                     <div class="form-group mt-2">
-                        <label class="form-label">Name<span class="text-danger"> *</span></label>
+                        <label class="form-label">{{ __('Name') }}<span class="text-danger"> *</span></label>
                         <input type="text" name="name" class="form-control" value="{{ $item->name ?? 'N/A' }}" >
                         @error('name')
                             <span class="text-danger">{{ $message }}</span>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group mt-2">
-                        <label class="form-label">Main Image (Size: 230px*230px)</label>
+                        <label class="form-label">{{ __('Main Image') }} ({{ __('Size') }}: 230px*230px)</label>
                         <input type="file" name="image" class="form-control" id="file-upload">
                         @error('image')
                             <span class="text-danger">{{ $message }}</span>
@@ -51,11 +51,11 @@
                         <img src="" alt="" id="item_output" width="200">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Previous Image</label>
+                        <label class="form-label">{{ __('Previous Image') }}</label>
                         <img style="height:100px; width: 100px" src="{{ asset('uploads/items') }}/{{ $item->image ?? 'default.jpg'}}" alt="item Image">
                     </div>
                     <div class="form-group">
-                        <label for="description"><b>Description</b> <span class="text-danger">*</span></label>
+                        <label for="description"><b>{{ __('Description') }}</b> <span class="text-danger">*</span></label>
                         <input id="description" type="hidden" name="description" value="{!! $item->description ?? ''!!}" />
                         <trix-editor input="description" class="trix-content"></trix-editor>
                         @error('description')
@@ -63,9 +63,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Category<span class="text-danger">*</span></label>
+                        <label>{{ __('Category') }}<span class="text-danger">*</span></label>
                         <select name="category_id" class="form-control">
-                            <option selected disabled>--Select One--</option>
+                            <option selected disabled>--{{ __('Select One') }}--</option>
                             @foreach (nftCategories() as $cat)
                                 <option value="{{ $cat->id }}"{{ $cat->id == $item->category_id ? 'selected':''}}>{{ $cat->name ?? 'N/A' }}</option>
                             @endforeach
@@ -75,47 +75,47 @@
                         @enderror
                     </div>
                     <div class="form-group mt-2">
-                        <label class="form-label"> Price<span class="text-danger">*</span></label>
+                        <label class="form-label"> {{ __('Price') }}<span class="text-danger">*</span></label>
                         <input type="number" name="price" class="form-control" value="{{ $item->price ?? ''}}">
                         @error('price')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group mt-2">
-                        <label class="form-label">Quantity<span class="text-danger">*</span></label>
+                        <label class="form-label">{{ __('Quantity') }}<span class="text-danger">*</span></label>
                         <input type="number" name="quantity" class="form-control" value="{{ $item->quantity ?? ''}}">
                         @error('quantity')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group mt-2">
-                        <label class="form-label">Creators Loyalty</label>
+                        <label class="form-label">{{ __('Creators Loyalty') }}</label>
                         <input type="number" name="creator_loyalty" class="form-control" value="{{ $item->creator_loyalty ?? '' }}">
                     </div>
                     <div class="form-group mt-2">
-                        <label class="form-label">Expire Date</label>
+                        <label class="form-label">{{ __('Expire Date') }}</label>
                         <input id="item-date" type="date" name="expire_date" class="form-control" value="{{ $item->expire_date ?? ''}}">
                     </div>
                     <div class="form-group mt-2">
-                        <label class="form-label">Buy Button Text</label>
+                        <label class="form-label">{{ __('Buy Button Text') }}</label>
                         <input type="text" name="buy_button_text" class="form-control" value="{{ $item->buy_button_text ?? 'Buy Now' }}">
                         @error('buy_button_text')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group mt-2">
-                        <label class="form-label">View Button Text</label>
+                        <label class="form-label">{{ __('View Button Text') }}</label>
                         <input type="text" name="view_button_text" class="form-control" value="{{ $item->view_button_text ?? 'View Details' }}">
                         @error('view_button_text')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>BlockChain<span class="text-danger">*</span></label>
+                        <label>{{ __('BlockChain') }}<span class="text-danger">*</span></label>
                         <select name="blockchain" class="form-control">
-                            <option {{ $item->blockchain == 'Ethereum' ? 'selected':''}}  value="Ethereum">Ethereum</option>
-                            <option {{ $item->blockchain == 'Flow' ? 'selected':''}} value="Flow">Flow</option>
-                            <option {{ $item->blockchain == 'FUSD' ? 'selected':''}} value="FUSD">FUSD</option>
+                            <option {{ $item->blockchain == 'Ethereum' ? 'selected':''}}  value="Ethereum">{{ __('Ethereum') }}</option>
+                            <option {{ $item->blockchain == 'Flow' ? 'selected':''}} value="Flow">{{ __('Flow') }}</option>
+                            <option {{ $item->blockchain == 'FUSD' ? 'selected':''}} value="FUSD">{{ __('FUSD') }}</option>
                         </select>
                         @error('blockchain')
                             <span class="text-danger">{{ $message }}</span>
@@ -125,7 +125,7 @@
                     <!-- Button trigger modal -->
                     <div>
                         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#propertyModal">
-                            Edit Properties <i class="fa fa-plus"></i>
+                            {{ __('Edit Properties') }} <i class="fa fa-plus"></i>
                         </button>
                     </div>
 
@@ -135,8 +135,8 @@
                         <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Properties</h5>
-                            <small class="text-danger ml-2">(Please put all info if select)</small>
+                            <h5 class="modal-title" id="exampleModalLabel">{{ __('Add Properties') }}</h5>
+                            <small class="text-danger ml-2">({{ __('Please put all info if select') }})</small>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -146,15 +146,15 @@
                             @foreach ($properties as $pro)
                             <div class="row new_properties">
                                 <div class="col-4">
-                                    <label for="">Name</label>
+                                    <label for="">{{ __('Name') }}</label>
                                     <input type="text" name="propertyname[]" class="form-control" value="{{ $pro->name }}">
                                 </div>
                                 <div class="col-4">
-                                    <label for="">Type</label>
+                                    <label for="">{{ __('Type') }}</label>
                                     <input type="text" name="propertytype[]" class="form-control" value="{{ $pro->type }}">
                                 </div>
                                 <div class="col-3">
-                                    <label for="">Trait</label>
+                                    <label for="">{{ __('Trait') }}</label>
                                     <input type="number" name="propertytrait[]" class="form-control" value="{{ $pro->trait }}">
                                 </div>
                                 <button type="button" class="close remove--new_properties">
@@ -165,15 +165,15 @@
                             @else
                             <div class="row new_properties">
                                 <div class="col-4">
-                                    <label for="">Name</label>
+                                    <label for="">{{ __('Name') }}</label>
                                     <input type="text" name="propertyname[]" class="form-control" value="{{ old('propertyname') }}">
                                 </div>
                                 <div class="col-4">
-                                    <label for="">Type</label>
+                                    <label for="">{{ __('Type') }}</label>
                                     <input type="text" name="propertytype[]" class="form-control" value="{{ old('propertytype') }}">
                                 </div>
                                 <div class="col-3">
-                                    <label for="">Trait</label>
+                                    <label for="">{{ __('Trait') }}</label>
                                     <input type="number" name="propertytrait[]" class="form-control" value="{{ old('propertytrait') }}">
                                 </div>
                                 <button type="button" class="close remove--new_properties">
@@ -182,16 +182,16 @@
                             </div>
                             @endif
                             <div class="properties-container"></div>
-                            <div class="btn btn-info mt-1" id="add_more">Add More</div>
+                            <div class="btn btn-info mt-1" id="add_more">{{ __('Add More') }}</div>
                             </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="save_property">Save Properties</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                            <button type="button" class="btn btn-primary" id="save_property">{{ __('Save Properties') }}</button>
                             </div>
                         </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-1">Update</button>
+                    <button type="submit" class="btn btn-primary mt-1">{{ __('Update') }}</button>
                 </form>
             </div>
 

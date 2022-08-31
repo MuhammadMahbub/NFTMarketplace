@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use App\Models\Blog;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,7 @@ class BlogSeeder extends Seeder
             'author_facebook'=> "https://www.facebook.com",
             'author_twitter' => "https://www.twitter.com",
             'author_discord' => "https://www.discord.com",
+            'created_at'      => Carbon::createFromFormat('Y-m-d', '2022-05-21')->toDateTimeString(),
         ]);
 
         Blog::create([
@@ -57,6 +59,7 @@ class BlogSeeder extends Seeder
             'author_facebook'=> "https://www.facebook.com",
             'author_twitter' => "https://www.twitter.com",
             'author_discord' => "https://www.discord.com",
+            'created_at'      => Carbon::createFromFormat('Y-m-d', '2022-04-21')->toDateTimeString(),
         ]);
 
         Blog::create([
@@ -79,6 +82,7 @@ class BlogSeeder extends Seeder
             'author_facebook'=> "https://www.facebook.com",
             'author_twitter' => "https://www.twitter.com",
             'author_discord' => "https://www.discord.com",
+            'created_at'     => Carbon::createFromFormat('Y-m-d', '2022-01-21')->toDateTimeString(),
         ]);
     }
 }

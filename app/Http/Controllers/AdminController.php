@@ -19,6 +19,7 @@ use App\Models\ThemeSetting;
 use Illuminate\Http\Request;
 use App\Models\LikeCollection;
 use App\Models\ReportCategory;
+use App\Models\Subscribe;
 use Illuminate\Validation\Rule;
 use Shetabit\Visitor\Models\Visit;
 use Spatie\Permission\Models\Role;
@@ -187,34 +188,28 @@ class AdminController extends Controller
     }
 
     public function update_password(Request $request, $id){
-
         $request->validate([
-            'current_password' => 'required',
-            'password' => 'required|string|min:8|confirmed',
+            'current_password' => 'required'
         ]);
-
-       $user = User::find($id);
-
-       if (!(Hash::check($request->current_password, $user->password))) {
-
-            return back()->with("danger","Your current password does not matches with the password.");
-
-        }elseif($request->current_password == $request->password){
-
-            return back()->with("danger","New Password cannot be same as your current password.");
-
-        }elseif($request->get('password') == $request->get('password_confirmation')){
-
-            $user->update([
-                'password' => Hash::make($request->password)
+        $user = User::find($id);
+        $hashPass = Hash::check($request->current_password, $user->password);
+        if($hashPass){
+            $request->validate([
+                'password' => 'required',
+                'password_confirmation' => 'required'
             ]);
-
-            return back()->with("success","Password successfully changed!");
+            if($request->password == $request->password_confirmation){
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+            }else{
+                return back()->withErrors("Password doesn't match");
+            }
         }else{
-            return back()->with("danger","Password Doesn't Match.");
+            return back()->withErrors("Password doesn't match with our database credentials");
         }
-    }
 
+    }
      // User Delete
     public function userDestroy($id){
 
@@ -286,10 +281,13 @@ class AdminController extends Controller
         }
         $report_cat = ReportCategory::where('report_by',$id)->get();
         foreach($report_cat as $cat){
-            $user->update([
+            $cat->update([
                 'report_by' => NULL,
             ]);
         }
+        
+        $subs = Subscribe::where('email', User::find($id)->email)->first();
+        $subs->delete();
 
         User::find($id)->delete();
         return back()->withDanger('User deleted');

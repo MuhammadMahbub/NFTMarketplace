@@ -41,19 +41,16 @@
           <img style="width: 138px; height: 138px"
             src="{{ asset('uploads/images/users') }}/{{ $user->profile_photo_path ?? 'default.jpg' }}"
             alt="collection avatar"
-            class="dark:border-jacarta-600 rounded-xl border-[5px] border-white"
-          />
+            class="dark:border-jacarta-600 rounded-xl border-[5px] border-white"/>
           <div
             class="dark:border-jacarta-600 bg-green absolute -right-3 bottom-0 flex h-6 w-6 items-center justify-center rounded-full border-2 border-white"
-            data-tippy-content="Verified Collection"
-          >
+            data-tippy-content="Verified Collection">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               width="24"
               height="24"
-              class="h-[.875rem] w-[.875rem] fill-white"
-            >
+              class="h-[.875rem] w-[.875rem] fill-white">
               <path fill="none" d="M0 0h24v24H0z"></path>
               <path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
             </svg>
@@ -65,8 +62,7 @@
         <div class="text-center">
           <h2 class="font-display text-jacarta-700 mb-2 text-4xl font-medium dark:text-white">{{ $user->name ?? 'N/A' }}</h2>
           <div
-            class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 mb-8 inline-flex items-center justify-center rounded-full border bg-white py-1.5 px-4"
-          >
+            class="dark:bg-jacarta-700 dark:border-jacarta-600 border-jacarta-100 mb-8 inline-flex items-center justify-center rounded-full border bg-white py-1.5 px-4">
             <span data-tippy-content="ETH">
               <svg
                 version="1.1"
@@ -75,8 +71,7 @@
                 y="0"
                 viewBox="0 0 1920 1920"
                 xml:space="preserve"
-                class="mr-1 h-4 w-4"
-              >
+                class="mr-1 h-4 w-4">
                 <path fill="#8A92B2" d="M959.8 80.7L420.1 976.3 959.8 731z"></path>
                 <path fill="#62688F" d="M959.8 731L420.1 976.3l539.7 319.1zm539.8 245.3L959.8 80.7V731z"></path>
                 <path fill="#454A75" d="M959.8 1295.4l539.8-319.1L959.8 731z"></path>

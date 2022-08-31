@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-     Product
+     {{ __('Product') }}
 @endsection
 
 {{-- Active Menu --}}
@@ -21,17 +21,17 @@
 
 {{-- Breadcrumb --}}
 @section('breadcrumb')
-    <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+    <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('dashboard') }}">Home</a>
+                <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
             </li>
             <li class="breadcrumb-item active">
-                Product
+                {{ __('Product') }}
             </li>
             <li class="breadcrumb-item active">
-                Create Product
+                {{ __('Create Product') }}
             </li>
         </ol>
     </div>
@@ -39,20 +39,20 @@
 
 @section('content')
 <section class="banner-main-section" id="main">
-    
+
     <div class="row">
       <div class="col-lg-12">
         <div class="card shadow">
           <div class="card-header">
-            <h4 class="card-title">Create Product</h4>
+            <h4 class="card-title">{{ __('Create Product') }}</h4>
           </div>
           <div class="card-body">
             <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="category_name"> Category <span class="text-danger">*</span></label>
+                    <label for="category_name"> {{ __('Category') }} <span class="text-danger">*</span></label>
                     <select name="category_id" class="form-control">
-                        <option selected disabled>--Select One--</option>
+                        <option selected disabled>--{{ __('Select One') }}--</option>
                         @foreach ($categories as $item)
                             <option value="{{ $item->id }}">{{  $item->name }}</option>
                         @endforeach
@@ -63,7 +63,7 @@
                 @enderror
 
                 <div class="form-group">
-                    <label for="name"> Name <span class="text-danger">*</span></label>
+                    <label for="name"> {{ __('Name') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
                 </div>
                 @error('name')
@@ -71,7 +71,7 @@
                 @enderror
 
                 <div class="form-group">
-                    <label for="name"> Price <span class="text-danger">*</span></label>
+                    <label for="name"> {{ __('Price') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="price" name="price" value="{{ old('price') }}">
                 </div>
                 @error('price')
@@ -79,7 +79,7 @@
                 @enderror
 
                 <div class="form-group">
-                    <label for="name"> Quantity <span class="text-danger">*</span></label>
+                    <label for="name"> {{ __('Quantity') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="quantity" name="quantity" value="{{ old('quantity') }}">
                 </div>
                 @error('quantity')
@@ -87,14 +87,14 @@
                 @enderror
 
                 <div class="form-group">
-                    <label for="image"> Image <span class="text-danger">*</span></label>
+                    <label for="image"> {{ __('Image') }} <span class="text-danger">*</span></label>
                     <input type="file" class="form-control" id="image" name="image">
                 </div>
                 @error('image')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
             </form>
         </div>
     </div>

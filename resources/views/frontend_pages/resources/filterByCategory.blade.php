@@ -321,6 +321,7 @@
                                     placeholder="Password"
                                     />
                                 </div>
+                                <span class="errorPass"></span>
                                 <div class="flex items-center justify-center space-x-4">
                                     <a
                                         data_id="{{ $item->id }}"
@@ -400,7 +401,6 @@
             </div>
         </div>
     @endpush
-
 @empty
 <div style="color: #e4761b">No Items Availble</div>
 @endforelse

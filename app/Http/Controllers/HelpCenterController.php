@@ -29,13 +29,7 @@ class HelpCenterController extends Controller
 
     public function create_title_update(Request $request){
 
-        $request->validate([
-            'help_center_title' => 'required',
-            'bg_image'          => 'image',
-            'category_title'    => 'required',
-            'faq_title'         => 'required',
-            'faq_meta_title'    => 'required'
-        ]);
+        $request->validate(['help_center_title'=>'required','bg_image'=>'image','category_title'=>'required','faq_title'=>'required','faq_meta_title'=>'required']);
 
         $HelpCenterTitle = HelpCenterTitle::first();
 
@@ -61,10 +55,7 @@ class HelpCenterController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|unique:help_centers',
-            'description' => 'required',
-        ]);
+        $request->validate(['title'=>'required|unique:help_centers','description'=>'required']);
 
         HelpCenter::create($request->except('_token') + ['created_at' => Carbon::now()]);
         return redirect()->route('help_center.index')->with('success', 'Help Center Added Successfully');

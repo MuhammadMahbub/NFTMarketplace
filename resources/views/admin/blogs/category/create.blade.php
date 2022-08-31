@@ -2,7 +2,7 @@
 
     {{-- Title --}}
     @section('title')
-        {{ config('app.name') }} | Blog Categories
+        {{ config('app.name') }} | {{ __("Blog Categories") }}
     @endsection
 
     {{-- Active Menu --}}
@@ -13,11 +13,11 @@
 
     {{-- Breadcrumb --}}
     @section('breadcrumb')
-         <h2 class="content-header-title float-left mb-0">Admin Dashboard</h2>
+         <h2 class="content-header-title float-left mb-0">{{ __('Admin Dashboard') }}</h2>
         <div class="breadcrumb-wrapper">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active">
-                    <a href="{{ route('dashboard') }}">Blog Categories</a>
+                    <a href="{{ route('dashboard') }}">{{ __("Blog Categories") }}</a>
                 </li>
             </ol>
         </div>
@@ -30,20 +30,20 @@
             <div class="card">
                 <div class="card-header">
                     <div class="col-md-6">
-                        <h4 class="card-title">Create Category</h4>
+                        <h4 class="card-title">{{ __("Create Category") }}</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('blog_category.store') }}" method="POST">
                         @csrf
                         <div class="form-group mt-2">
-                            <label class="form-label">Name <span class="text-danger"> *</span></label>
+                            <label class="form-label">{{ __("Name") }} <span class="text-danger"> *</span></label>
                             <input type="text" name="category_name" class="form-control" value="{{ old('category_name') }}">
                             @error('category_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <button type="submit" class="btn btn-primary mt-3">{{ __('Submit') }}</button>
                     </form>
                 </div>
 
